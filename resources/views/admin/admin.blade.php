@@ -3,11 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="col-md-20 text-center" id="app">
-                        <a href="#"><h5>Arcade</h5></a>
-                        <a href="#"><h5>Category</h5></a>
-                        <a href="#"><h5>Custom</h5></a>
-                    </div>
+                    adminke
                 </div>
             </div>
         </div>
