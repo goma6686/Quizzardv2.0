@@ -1,10 +1,16 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    adminke
-                </div>
+    <div class="row">
+        <div class="col-sm-2 sidebar min-h-screen bg-dark p-4 text-light">
+            <div>
+                NAVIGATION GOES HERE
+            </div>        
+        </div>
+        <div class="col-sm-9 left-content">
+            <div class="header">
+                HEADER GOES HERE
+            </div>
+            <div>
+                CONTENT GOES HERE
             </div>
         </div>
     </div>

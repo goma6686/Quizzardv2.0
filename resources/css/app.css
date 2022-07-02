@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.sidebar{
+    color: #fff;
+     padding: 15px 15px;
+     background:  #000;
+     border-right: 1px solid #C7B4A6;
+   }
+.row{
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+    overflow: hidden;
+}
