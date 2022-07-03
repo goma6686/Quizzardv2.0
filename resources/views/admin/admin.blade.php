@@ -14,7 +14,9 @@
 
         <div class="tab-content p-6 bg-white" id="v-pills-tabContent">
             <div class="tab-pane fade show active"  href="#questions" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab" tabindex="0">.questions..</div>
-            <div class="tab-pane fade" href="#users" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" href="#users" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab" tabindex="0">
+                @include('admin.layout.users')
+            </div>
             <div class="tab-pane fade" href="#categories" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab" tabindex="0">
                 @include('admin.layout.categories')
             </div>

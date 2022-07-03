@@ -34,9 +34,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                        <x-dropdown-link href="/user/{{Auth::user()->id}}">
                             Profile
                         </x-dropdown-link>
                         <!-- Authentication -->

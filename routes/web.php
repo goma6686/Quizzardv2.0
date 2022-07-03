@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -24,7 +25,10 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Auth::routes();
+
+Route::get('/user/{id}', [UserController::class, 'show'])->name('profile');
+Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
+Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,8 +37,12 @@ Route::get('/dashboard', function () {
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', [AdminController::class, 'index'])->name('admin.view');
 
+    Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
+
     Route::post('/category', [AdminController::Class, 'store']);
     Route::delete('/category/delete/{id}', [AdminController::class, 'destroy']);
  });
+
+ Auth::routes();
 
 require __DIR__.'/auth.php';

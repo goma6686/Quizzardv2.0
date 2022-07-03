@@ -17,9 +17,10 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->text('question_text');
-            $table->enum('is_active', ['0', '1'])->default('1');
+            $table->boolean('is_active')->default(1);
             $table->string('format');
             $table->foreignId('category_id')->unsigned()->constrained('categories');
+            $table->foreignId('user_id')->unsigned()->constrained('users');
             $table->timestamps();
         });
     }

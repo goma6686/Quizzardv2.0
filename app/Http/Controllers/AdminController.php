@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     public function index(Request $request){
+
+        //grazina kiek user turi sukures questions. Nzn ar reik
+        //$data = User::withCount(['questions'])->get(); 
         $categories = Category::all();
-        return view('admin.admin', ['categories' => $categories]);
+        $users = User::all();
+        return view('admin.admin', ['categories' => $categories, 'users' => $users]);
     }
 
     public function store(Request $request)
