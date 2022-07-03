@@ -1,17 +1,50 @@
 <x-app-layout>
-    <div class="row">
-        <div class="col-sm-2 sidebar min-h-screen bg-dark p-4 text-light">
-            <div>
-                NAVIGATION GOES HERE
-            </div>        
-        </div>
-        <div class="col-sm-9 left-content">
-            <div class="header">
-                HEADER GOES HERE
-            </div>
-            <div>
-                CONTENT GOES HERE
+    <div class="p-4 d-flex align-items-start">
+        <ul class="nav flex-column nav-pills me-3" id="myTab" role="tablist" aria-orientation="vertical">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" href="#questions" id="v-pills-questions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-questions" type="button" role="tab" aria-controls="v-pills-questions" aria-selected="true">questions</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" href="#users" id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="false">users</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" href="#categories" id="v-pills-categories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-categories" type="button" role="tab" aria-controls="v-pills-categories" aria-selected="false">categories</button>
+            </li>
+        </ul>
+
+        <div class="tab-content p-6 bg-white" id="v-pills-tabContent">
+            <div class="tab-pane fade show active"  href="#questions" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab" tabindex="0">.questions..</div>
+            <div class="tab-pane fade" href="#users" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" href="#categories" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab" tabindex="0">
+                @include('admin.layout.categories')
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(() => {
+        let url = location.href.replace(/\/$/, "");
+        
+        if (location.hash) {
+            const hash = url.split("#");
+            $('#myTab button[href="#'+hash[1]+'"]').tab("show");
+            url = location.href.replace(/\/#/, "#");
+            history.replaceState(null, null, url);
+            setTimeout(() => {
+            $(window).scrollTop(0);
+            }, 400);
+        } 
+        
+        $('button[data-bs-toggle="pill"]').on("click", function() {
+            let newUrl;
+            const hash = $(this).attr("href");
+            if(hash == "#questions") {
+            newUrl = url.split("#")[0];
+            } else {
+            newUrl = url.split("#")[0] + hash;
+            }
+            newUrl += "/";
+            history.replaceState(null, null, newUrl);
+        });
+        });
+    </script>
 </x-app-layout>

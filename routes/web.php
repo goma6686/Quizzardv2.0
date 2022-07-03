@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Auth::routes();
 
 Route::get('/dashboard', function () {
@@ -28,6 +32,9 @@ Route::get('/dashboard', function () {
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', [AdminController::class, 'index'])->name('admin.view');
+
+    Route::post('/category', [AdminController::Class, 'store']);
+    Route::delete('/category/delete/{id}', [AdminController::class, 'destroy']);
  });
 
 require __DIR__.'/auth.php';
