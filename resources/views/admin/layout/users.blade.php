@@ -30,7 +30,7 @@
                     {{$user->email}}
                 </td>
                 <td>
-                    {{--{{$user->questions_count}}--}}
+                    {{$user->questions_count}}
                 </td>
                 <td>
                     @if ($user->is_active == 1) 
