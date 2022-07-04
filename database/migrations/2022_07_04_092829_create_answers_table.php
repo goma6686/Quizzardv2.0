@@ -14,13 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->text('question_text');
-            $table->boolean('is_active')->default(1);
-            $table->string('format');
-            $table->foreignId('category_id')->unsigned()->constrained('categories');
-            $table->foreignId('user_id')->unsigned()->constrained('users');
+            $table->text('answer_text');
+            $table->boolean('is_correct')->default(0);
+            $table->foreignId('question_id')->unsigned()->constrained('questions');
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('answers');
     }
 };
