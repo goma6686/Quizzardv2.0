@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -30,9 +31,21 @@ Route::get('/user/{id}', [UserController::class, 'show'])->name('profile');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/create', function () {
+    return view('create.create-question', [QuestionController::class, 'index']);
+})->middleware(['auth'])->name('create-question');*/
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/create', [QuestionController::class, 'index'])->name('create-question');
+});
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', [AdminController::class, 'index'])->name('admin.view');

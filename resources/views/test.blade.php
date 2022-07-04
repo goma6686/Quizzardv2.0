@@ -30,6 +30,39 @@
     
 </head>
 <body>
-    Testaaa
+    <label>
+        <input type="radio" name="colorCheckbox" value="red" checked> red</label>
+      <label>
+        <input type="radio" name="colorCheckbox" value="green"> green</label>
+      <label>
+        <input type="radio" name="colorCheckbox" value="blue"> blue</label>
+      
+      <div class="form-a">a</div>
+      <div class="form-b" style="display: none">b</div>
+      <div class="form-c" style="display: none">c</div>
+      
+<script>
+$(document).ready(function() {
+  $('input[name=colorCheckbox]:radio').change(function(e) {
+    let value = e.target.value.trim()
+
+    $('[class^="form"]').css('display', 'none');
+    
+    switch (value) {
+      case 'red':
+        $('.form-a').show()
+        break;
+      case 'green':
+        $('.form-b').show()
+        break;
+      case 'blue':
+        $('.form-c').show()
+        break;
+      default:
+        break;
+    }
+  })
+})
+</script>
 </body>
 </html>

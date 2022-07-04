@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="p-4 d-flex align-items-start">
-        <ul class="nav flex-column nav-pills me-3" id="myTab" role="tablist" aria-orientation="vertical">
-            <li class="nav-item" role="presentation">
+    <div class="p-4 d-flex">
+        <ul class="nav d-flex align-items-start flex-column nav-pills me-3" id="myTab" role="tablist" aria-orientation="horizontal">
+            <li class="nav-item " role="presentation">
                 <button class="nav-link active" href="#questions" id="v-pills-questions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-questions" type="button" role="tab" aria-controls="v-pills-questions" aria-selected="true">questions</button>
             </li>
             <li class="nav-item" role="presentation">
@@ -12,8 +12,10 @@
             </li>
         </ul>
 
-        <div class="tab-content p-6 bg-white" id="v-pills-tabContent">
-            <div class="tab-pane fade show active"  href="#questions" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab" tabindex="0">.questions..</div>
+        <div class="tab-content d-flex justify-content-center w-100 p-4 bg-white border border-secondary" id="v-pills-tabContent">
+            <div class="tab-pane fade show active "  href="#questions" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab" tabindex="0">
+                @include('admin.layout.question')
+            </div>
             <div class="tab-pane fade" href="#users" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab" tabindex="0">
                 @include('admin.layout.users')
             </div>
