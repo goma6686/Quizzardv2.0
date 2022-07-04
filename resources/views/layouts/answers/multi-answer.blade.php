@@ -10,12 +10,12 @@
         </thead>
         <tbody>
             <tr>
-                <td><input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="..."></td>
+                <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
                 <td><input type="text" name="name" class="form-control" required=""></td>
                 <td></td>
             </tr>
             <tr>
-                <td><input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="..."></td>
+                <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
                 <td><input type="text" name="name" class="form-control" required=""></td>
                 <td></td>
             </tr>
@@ -33,7 +33,7 @@
               var cols = '';
       
               // Table columns
-              cols += '<td><input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="" aria-label="..."></td>'
+              cols += '<td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>'
               cols += '<td><input class="form-control" type="text" name="name" placeholder="Type here..."></td>';
               cols += '<td><button class="btn btn-danger" id ="deleteRow"></button</td>';
       

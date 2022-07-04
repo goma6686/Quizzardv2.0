@@ -4,7 +4,7 @@
     <label>Question Text:</label>
     <input type="text" name="title" class="form-control" required="">
 </div>
-@include('layouts.answers.answer')
+@include('layouts.answers.multi-answer')
 <div class="form-group pt-4">
     <div class="col-md-2">
     <label for="category">Category:</label>

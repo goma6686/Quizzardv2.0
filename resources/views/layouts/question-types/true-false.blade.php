@@ -4,7 +4,10 @@
     <label>Question Text:</label>
     <input type="text" name="title" class="form-control" required="">
 </div>
-@include('layouts.answers.answer')
+<div class="form-check pt-4">
+    <label for="is_true">Is True?</label>
+    <input class="form-check-input" type="checkbox" value="" name="is_true">
+</div>
 <div class="form-group pt-4">
     <div class="col-md-2">
     <label for="category">Category:</label>
