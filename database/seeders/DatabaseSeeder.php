@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CategorySeeder::class,
+            TypeSeeder::class,
         ]);
         $this->command->info('All tables seeded successfully!');
     }

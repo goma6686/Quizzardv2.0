@@ -5,14 +5,19 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-center p-3">Create Quiz Question</h3>
                     {{ Html::ul($errors->all()) }}
-                    <select id="options" >
+                    <label>Choose Type:</label>
+                    <br>
+                    <select name="category" id="options" >
                         <option>--</option>
-                        <option value="abc">ABC</option>
-                        <option value="xyz">XYZ</option>
+                        @foreach($types as $type)
+                            <option value="{{ $type->id }}" > {{$type->name}} </option>
+                        @endforeach
                     </select>
                     
-                    <div id="content-abc" class="content hidden">@include('layouts.question-types.simple')</div>
-                    <div id="content-xyz" class="content hidden">Content2 goes here</div>
+                    <!-- gal divus galima labiau dynamic, idk xd -->
+                    <div id="content-1" class="content hidden"> @include('layouts.question-types.simple') </div>
+                    <div id="content-2" class="content hidden"> @include('layouts.question-types.multiple-choice') </div>
+                    <div id="content-3" class="content hidden"> @include('layouts.question-types.true-false') </div>
                 </div>
             </div>
         </div>

@@ -1,9 +1,10 @@
 <form enctype="multipart/form-data" method="POST" action="#">
     @csrf
-<div class="form-group pt-4">
+<div class="form-group pt-4 mb-4">
     <label>Question Text:</label>
     <input type="text" name="title" class="form-control" required="">
 </div>
+@include('layouts.answers.answer')
 <div class="form-group pt-4">
     <div class="col-md-2">
     <label for="category">Category:</label>

@@ -23,7 +23,62 @@
             @include('layouts.navigation')
 
             <!-- Page Content -->
-            Test
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+            <div class="card-body p-5">
+                
+                <!--  Bootstrap table-->
+                <div class="table-responsive">
+                    <table class="table border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Answer Text</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" name="name" class="form-control" required=""></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="name" class="form-control" required=""></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add rows button-->
+                <a class="btn btn-primary" id="insertRow" href="#">Add new row</a>
+            </div>
+          <script>
+          $(function () {
+          
+              $("#insertRow").on("click", function (event) {
+                  event.preventDefault();
+          
+                  var newRow = $("<tr>");
+                  var cols = '';
+          
+                  // Table columns
+                  cols += '<td><input class="form-control" type="text" name="name" placeholder="Type here..."></td>';
+                  cols += '<td><button class="btn btn-danger" id ="deleteRow"></button</td>';
+          
+                  // Insert the columns inside a row
+                  newRow.append(cols);
+          
+                  // Insert the row inside a table
+                  $("table").append(newRow);
+          
+                  // Increase counter after each row insertion
+                  counter++;
+              });
+          
+              // Remove row when delete btn is clicked
+              $("table").on("click", "#deleteRow", function (event) {
+                  $(this).closest("tr").remove();
+                  counter -= 1
+              });
+          });
+          </script>
     </body>
 </html>
