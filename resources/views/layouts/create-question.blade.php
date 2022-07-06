@@ -27,15 +27,18 @@
                         <table id="table" class="table border-dark">
                             <thead>
                                 <tr>
-                                    <th scope="col">Is Correct</th>
                                     <th scope="col">Answer Text</th>
+                                    <th scope="col">Is Correct</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" name="is_correct_0"></td>
                                     <td><input type="text" name="answer_text_0" class="form-control" placeholder="Type here..." required=""></td>
+                                    <td>
+                                        <input type="hidden" name="is_correct_0" value="0" />
+                                        <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="1" name="is_correct_0">
+                                    </td>
                                     <td></td>
                                 </tr>
                             </tbody>

@@ -24,6 +24,7 @@ class QuestionController extends Controller
             'type' => 'required',
             'category' => 'required',
         ]);
+        //gauni visus inputs
         $input = $request->all();
 
         //save question
@@ -32,22 +33,30 @@ class QuestionController extends Controller
         $question -> type_id = $input['type'];
         $question -> category_id = $input['category'];
         $question -> user_id = $request->user()->id;
-        //$question -> save();
-
-        //is visu gautu inputu atrinkti answers
+        $question -> save();
+        
         foreach($input as $key => $value) {
+            $answer_text = null;
+            $is_correct = null;
+            
+            //randi answer_text__x value
             if (preg_match('/^answer_text_[0-5]$/', $key)){
+                $answer_text = $value;
+            }
+            //randi is_correct_x value
+            if (preg_match('/^is_correct_[0-5]$/', $key)){
+                $is_correct = $value;
+            }
+            //sukuri answer
+            if (isset($answer_text)){
                 $answer = new Answer();
-                $answer -> answer_text = $value;
+                $answer -> answer_text = $answer_text;
+                if(isset($is_correct)){
+                    $answer -> is_correct = $is_correct;
+                } //else nereikia, nes default yra false
                 $answer -> question_id = $question->id; //is katik sukurto q
                 $answer -> save();
-
-                $id = $answer->id;
-            } 
-            //TO DO
-            if (preg_match('/^is_correct_[0-5]$/', $key)){
-                //Answer::where('id', $answer->id)->update(['is_correct'=>'1']);
-            } //else nereikia, nes default reiksme 0
+            }
         }
         return redirect()->back();
     }

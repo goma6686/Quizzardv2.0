@@ -14,8 +14,8 @@
             var cols = '';
     
             // Table columns
-            cols += `<td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" name="is_correct_${counter}"></td>`
             cols += `<td><input class="form-control" type="text" name="answer_text_${counter}" placeholder="Type here..." required=""></td>`;
+            cols += `<td><input type="hidden" name="is_correct_${counter}" value="0" /><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" name="is_correct_${counter}"></td>`
             cols += '<td><button class="btn btn-sm btn-danger" id ="deleteRow"></button></td>';
     
             // Insert the columns inside a row
