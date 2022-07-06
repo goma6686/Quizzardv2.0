@@ -11,6 +11,10 @@ class Question extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'question_text'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
