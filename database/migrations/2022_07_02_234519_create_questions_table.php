@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->text('question_text');
             $table->boolean('is_active')->default(1);
-            $table->string('format');
+            $table->foreignId('type_id')->unsigned()->constrained('types');
             $table->foreignId('category_id')->unsigned()->constrained('categories');
             $table->foreignId('user_id')->unsigned()->constrained('users');
         });

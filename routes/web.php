@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -21,19 +22,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
+//DELETE LATER VV
+Route::get('/test', [UserController::class, 'test'])->name('test');
 
-
+//user-related
 Route::get('/user/{id}', [UserController::class, 'show'])->name('profile');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+//tik prisijungusiems
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
+    Route::get('/create', [QuestionController::class, 'index'])->name('create-question');
+    Route::post('/create-question', [QuestionController::Class, 'store']);
+});
+
+//tik adminam
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', [AdminController::class, 'index'])->name('admin.view');
 

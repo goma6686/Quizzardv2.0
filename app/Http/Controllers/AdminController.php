@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function index(Request $request){
-
-        //grazina kiek user turi sukures questions. Nzn ar reik
-        //$data = User::withCount(['questions'])->get(); 
         $categories = Category::all();
-        $users = User::all();
-        return view('admin.admin', ['categories' => $categories, 'users' => $users]);
+        $users = User::withCount(['questions'])->get();
+        //$questions = Question::all();
+        $questions = DB::table('questions')
+            ->join('users', 'questions.user_id', 'users.id')
+            ->select('questions.*', 'users.name as creator')
+            ->get();
+        return view('admin.admin', ['categories' => $categories, 'users' => $users, 'questions' => $questions]);
     }
 
     public function store(Request $request)
@@ -29,7 +32,7 @@ class AdminController extends Controller
 
         try {
             $category -> save();
-            return redirect()->back();
+            return redirect('/admin-view#categories/');
         
         } catch(\Illuminate\Database\QueryException $e){
             $errorCode = $e->errorInfo[1];
@@ -48,6 +51,6 @@ class AdminController extends Controller
             Question::where('category_id', $id)->update((['category_id'=>'1']));
             $category->delete();
         }
-        return redirect()->back();
+        return redirect('/admin-view#categories/');
     }
 }

@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class Type extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'answer_text',
-        'is_correct',
-    ];
-
-    public function question()
+    public function questions()
     {
         return $this->belongsTo(Question::class);
     }

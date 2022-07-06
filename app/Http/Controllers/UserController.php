@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Type;
+use App\Models\Category;
 
 class UserController extends Controller
 {
@@ -13,6 +15,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         //$count = $questions->where('is_active', '=', 1)->count();
         return view('profile', ['user' => $user]);
+    }
+
+    public function test(Request $request){
+        $type = Type::all();
+        $categories = Category::all();
+        return view('test', ['types' => $type, 'categories' => $categories]);
     }
 
     public function edit($id)

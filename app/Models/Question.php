@@ -11,9 +11,23 @@ class Question extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'question_text'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    public function types()
+    {
+        return $this->hasMany(Type::class);
     }
 
 }
