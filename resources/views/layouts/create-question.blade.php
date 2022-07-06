@@ -5,15 +5,15 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-center p-3">Create Quiz Question</h3>
                     {{ Html::ul($errors->all()) }}
-                    <form enctype="multipart/form-data" method="POST" action="#">
+                    <form enctype="multipart/form-data" method="POST" action="/create-question">
                         @csrf
                     <div class="form-group pt-4 mb-4">
                         <label>Question Text:</label>
-                        <input type="text" name="title" class="form-control" required="">
+                        <input type="text" name="question_text" class="form-control" required="">
                     </div>
                     <label>Choose Type:</label>
                     <br>
-                    <select name="category" id="options">
+                    <select name="type" id="options">
                         @foreach ($types as $type)
                             <option value="{{ $type->id }}" @selected(old('type') == $type)>
                                 {{$type->name}}
@@ -27,15 +27,18 @@
                         <table id="table" class="table border-dark">
                             <thead>
                                 <tr>
-                                    <th scope="col">Is Correct</th>
                                     <th scope="col">Answer Text</th>
+                                    <th scope="col">Is Correct</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
-                                    <td><input type="text" name="name" class="form-control" required=""></td>
+                                    <td><input type="text" name="answer_text_0" class="form-control" placeholder="Type here..." required=""></td>
+                                    <td>
+                                        <input type="hidden" name="is_correct_0" value="0" />
+                                        <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="1" name="is_correct_0">
+                                    </td>
                                     <td></td>
                                 </tr>
                             </tbody>
@@ -63,5 +66,5 @@
             </div>
         </div>
     </div>
-@include('layouts.scripts.answer-script')
+@include('scripts.answer-script')
 </x-app-layout>
