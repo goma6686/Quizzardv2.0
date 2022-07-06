@@ -22,22 +22,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/test', [UserController::class, 'test'])->name('test');
 
+Route::get('/answer', function () {
+    return view('layouts.answers.answer');
+});
+Route::get('/true-false', function () {
+    return view('layouts.answers.true-false');
+});
 
 Route::get('/user/{id}', [UserController::class, 'show'])->name('profile');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');
-
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/create', function () {
-    return view('create.create-question', [QuestionController::class, 'index']);
-})->middleware(['auth'])->name('create-question');*/
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', function () {
