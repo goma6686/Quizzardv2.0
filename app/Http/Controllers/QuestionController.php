@@ -32,17 +32,23 @@ class QuestionController extends Controller
         $question -> type_id = $input['type'];
         $question -> category_id = $input['category'];
         $question -> user_id = $request->user()->id;
-        $question -> save();
+        //$question -> save();
 
         //is visu gautu inputu atrinkti answers
         foreach($input as $key => $value) {
-            if (preg_match('/^answer_text_[0-5]$/',$key)){
+            if (preg_match('/^answer_text_[0-5]$/', $key)){
                 $answer = new Answer();
                 $answer -> answer_text = $value;
                 $answer -> question_id = $question->id; //is katik sukurto q
                 $answer -> save();
-            }
+
+                $id = $answer->id;
+            } 
+            //TO DO
+            if (preg_match('/^is_correct_[0-5]$/', $key)){
+                //Answer::where('id', $answer->id)->update(['is_correct'=>'1']);
+            } //else nereikia, nes default reiksme 0
         }
-        return $input;
+        return redirect()->back();
     }
 }

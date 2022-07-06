@@ -34,7 +34,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""></td>
+                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" name="is_correct_0"></td>
                                     <td><input type="text" name="answer_text_0" class="form-control" placeholder="Type here..." required=""></td>
                                     <td></td>
                                 </tr>
