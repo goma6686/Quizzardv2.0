@@ -13,41 +13,55 @@
                     </div>
                     <label>Choose Type:</label>
                     <br>
-                    <select name="category" id="options" >
-                        <option>--</option>
-                        @foreach($types as $type)
-                            <option value="{{ $type->id }}" > {{$type->name}} </option>
+                    <select name="category" id="options">
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}" @selected(old('type') == $type)>
+                                {{$type->name}}
+                            </option>
                         @endforeach
                     </select>
+
+                   <div class="form-group pt-4 mb-4">
+                    <label>Answers:</label>
+                    <div class="table-responsive">
+                        <table id="table" class="table border-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Is Correct</th>
+                                    <th scope="col">Answer Text</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></td>
+                                    <td><input type="text" name="name" class="form-control" required=""></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-secondary text-dark" id="insertRow">Add</button></div>
+                    </div>
                     
-                    <!-- gal divus galima labiau dynamic, idk xd -->
-                    <div id="content-1" class="content hidden"> @include('layouts.answers.answer') </div>
-                    <div id="content-2" class="content hidden"> @include('layouts.answers.multi-answer') </div>
-                    <div id="content-3" class="content hidden"> @include('layouts.answers.true-false') </div>
                     <div class="form-group pt-4">
                         <div class="col-md-2">
                         <label for="category">Category:</label>
                         <select class="form-control" name="category" type="category" required>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" selected > {{$category->name}} </option>
+                                    <option value="{{ $category->id }}"  > {{$category->name}} </option>
                                 @endforeach
                         </select>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-secondary text-dark">Submit</button>
+                        <button id="submit" type="submit" class="btn btn-secondary text-dark">Submit</button>
                     </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-<script>
-    $(document).ready(function(){
-        $("#options").change(function(){
-            $(".content").addClass("hidden");
-            $("#content-"+$(this).val()).removeClass("hidden");
-        });
-    });
-</script>
+@include('layouts.scripts.answer-script')
 </x-app-layout>

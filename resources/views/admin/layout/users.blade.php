@@ -1,3 +1,4 @@
+<div class="table-responsive">
 <table class="table table-light table-hover">
     <thead>
         <tr>
@@ -76,6 +77,7 @@
         @endforeach
     </tbody>
 </table>
+</div>
 @if($counter == 0)
 <h3 style="text-align: center;">No users found :(</h3>
 @endif
