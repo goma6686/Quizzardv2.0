@@ -1,4 +1,3 @@
-<div class="table-responsive">
 <table class="table table-light table-hover">
     <thead>
         <tr>
@@ -31,7 +30,7 @@
                     {{$user->email}}
                 </td>
                 <td>
-                    {{$user->questions_count}}
+                    {{--{{$user->questions_count}}--}}
                 </td>
                 <td>
                     @if ($user->is_active == 1) 
@@ -77,7 +76,6 @@
         @endforeach
     </tbody>
 </table>
-</div>
 @if($counter == 0)
 <h3 style="text-align: center;">No users found :(</h3>
 @endif

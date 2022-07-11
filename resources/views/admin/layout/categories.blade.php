@@ -37,7 +37,7 @@
                     </td>
                     <td>
                         @csrf
-                    <button type="submit" class="btn btn-sm btn-secondary text-dark">Add</button>
+                    <button type="submit" class="btn btn-sm btn-dark">Add</button>
                 </form>
             </td>
         </tr>
