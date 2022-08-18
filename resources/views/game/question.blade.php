@@ -11,9 +11,9 @@
                                 <span class="text-gray-400 font-extrabold p-1">User</span>
                                 <span class="font-bold p-2 leading-loose bg-blue-500 text-gray rounded-lg">{{Auth::user()->name}}</span>
                             </h1>
-                            <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            <!--<p class="mt-1 max-w-2xl text-sm text-gray-500">
                                 <span class="text-gray-400 font-extrabold p-1">Quiz Progress </span>
-                                <span class="font-bold p-3 leading-loose bg-blue-500 text-gray rounded-full">22</span>
+                                <span class="font-bold p-3 leading-loose bg-blue-500 text-gray rounded-full">{{ $questions->currentPage() ."/". $questions->total()  }}</span>-->
                             </p>
                         </div>
                     </div>
@@ -23,13 +23,15 @@
                                     <h3 class="text-lg leading-6 mb-2 font-medium text-gray-900">
                                         <span class="mr-2 font-extrabold"> {{$question->question_text}}</span>
                                     </h3>
-                                    <label >
+                                    
                                         @foreach($question->answers as $a)
                                             <div class="max-w-auto px-3 py-3 m-3 text-gray-800 rounded-lg border-2 border-gray-300 text-sm ">
-                                                <span class="mr-2 font-extrabold"><input id="question-" value=""  type="radio"> </span> {{$a->answer_text}}
+                                            <input id="question-{{$a->id}}" name="radiogroup" value=""  type="radio">
+                                                    <label for="question-{{$a->id}}">
+                                                        {{$a->answer_text}}
+                                                    </label>
                                             </div>
                                         @endforeach
-                                    </label>
                                 </div>
                             @endforeach
                             <div class="flex items-center justify-end mt-4">
