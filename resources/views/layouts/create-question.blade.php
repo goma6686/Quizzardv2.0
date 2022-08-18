@@ -37,7 +37,7 @@
                                     <td><input type="text" name="answer_text[]" class="form-control" placeholder="Type here..." required=""></td>
                                     <td>
                                         <input type="hidden" name="is_correct[]" value="0" />
-                                        <input type="checkbox" name="is_correct[]" value="1"/>
+                                        <input type="checkbox" name="is_correct[]" value="0"/>
                                     </td>
                                     <td></td>
                                 </tr>

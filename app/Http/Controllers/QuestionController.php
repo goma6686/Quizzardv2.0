@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use App\Models\Category;
 use App\Models\Answer;
 use App\Models\Type;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class QuestionController extends Controller
 {
@@ -25,7 +26,8 @@ class QuestionController extends Controller
             'category' => 'required',
         ]);
         //gauni visus inputs
-        $input = $request->all();
+        //$input = $request->all();
+        return Request::only('answer_text', 'is_correct');
         return $input;
 
         //save question
