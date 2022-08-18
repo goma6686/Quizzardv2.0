@@ -4,18 +4,21 @@
 
         var select = document.getElementById('options');
         var value = select.options[select.selectedIndex].value;
-
-        console.log(value)
         
         $("#insertRow").on("click", function (event) {
             event.preventDefault();
+            if(counter > 1){
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
     
             var newRow = $("<tr>");
             var cols = '';
     
             // Table columns
-            cols += `<td><input class="form-control" type="text" name="answer_text_${counter}" placeholder="Type here..." required=""></td>`;
-            cols += `<td><input type="hidden" name="is_correct_${counter}" value="0" /><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" name="is_correct_${counter}"></td>`
+            cols += `<td><input class="form-control" type="text" name="answer_text[]" placeholder="Type here..." required=""></td>`;
+            cols += `<td><input type="hidden" name="is_correct[]" value="0" /><input type="checkbox" name="is_correct[]"  value="1" "></td>`
             cols += '<td><button class="btn btn-sm btn-danger" id ="deleteRow"></button></td>';
     
             // Insert the columns inside a row
@@ -27,18 +30,25 @@
             // Increase counter after each row insertion
             counter++;
             if (counter === 5){
-            document.getElementById('insertRow').disabled = true;
-        }
+                document.getElementById('insertRow').disabled = true;
+            }
         });
           
         // Remove row when delete btn is clicked
         $("table").on("click", "#deleteRow", function (event) {
             $(this).closest("tr").remove();
             counter -= 1;
+
+            if(counter >= 2){
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
         });
 
         $("#options").change(function(){
             var value = select.options[select.selectedIndex].value;
+            document.getElementById('submit').disabled = true;
 
             //jei true-false, tada palieka 1 eilute
             if (value === '3'){
@@ -48,9 +58,9 @@
                     counter -= 1
                 }
                 document.getElementById('insertRow').disabled = true;
+                document.getElementById('submit').disabled = false; //leist siust 1 answr, nes true-false
 
             } else { //jei simple || multi, tai max 5 answers
-
                 if (counter < 5){
                 document.getElementById('insertRow').disabled = false;
 

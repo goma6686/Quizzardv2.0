@@ -26,6 +26,7 @@ class QuestionController extends Controller
         ]);
         //gauni visus inputs
         $input = $request->all();
+        return $input;
 
         //save question
         $question = new Question();

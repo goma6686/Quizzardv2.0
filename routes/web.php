@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/create', [QuestionController::class, 'index'])->name('create-question');
     Route::post('/create-question', [QuestionController::Class, 'store']);
+    Route::get('/game', [QuizController::class, 'quiz'])->name('question');
 });
 
 //tik adminam

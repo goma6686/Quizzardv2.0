@@ -4,9 +4,12 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Question</th>
+                <th scope="col">Answer</th>
                 <th scope="col">Type</th>
+                <th scope="col">Category</th>
                 <th scope="col">Creator</th>
                 <th scope="col">Is Active?</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -24,7 +27,13 @@
                     {{$question->question_text}}
                 </td>
                 <td>
-                    {{$question->type_id}}
+                    {{$question->question_text}}
+                </td>
+                <td>
+                    {{$question->type}}
+                </td>
+                <td>
+                    {{$question->category}}
                 </td>
                 <td>
                     {{$question->creator}}
@@ -40,6 +49,9 @@
                             <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
                         </svg>
                     @endif
+                </td>
+                <td style="text-align: right;">
+                    <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
                 </td>
                 <td>
                     <form action="" method="POST">

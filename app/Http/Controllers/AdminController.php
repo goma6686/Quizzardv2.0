@@ -14,10 +14,11 @@ class AdminController extends Controller
     public function index(Request $request){
         $categories = Category::all();
         $users = User::withCount(['questions'])->get();
-        //$questions = Question::all();
-        $questions = DB::table('questions')
+        $questions = Question::with('answers')
             ->join('users', 'questions.user_id', 'users.id')
-            ->select('questions.*', 'users.name as creator')
+            ->join('types', 'questions.type_id', 'types.id')
+            ->join('categories', 'questions.category_id', 'categories.id')
+            ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
             ->get();
         return view('admin.admin', ['categories' => $categories, 'users' => $users, 'questions' => $questions]);
     }

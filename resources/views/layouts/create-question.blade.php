@@ -34,10 +34,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" name="answer_text_0" class="form-control" placeholder="Type here..." required=""></td>
+                                    <td><input type="text" name="answer_text[]" class="form-control" placeholder="Type here..." required=""></td>
                                     <td>
-                                        <input type="hidden" name="is_correct_0" value="0" />
-                                        <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="1" name="is_correct_0">
+                                        <input type="hidden" name="is_correct[]" value="0" />
+                                        <input type="checkbox" name="is_correct[]" value="1"/>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button id="submit" type="submit" class="btn btn-secondary text-dark">Submit</button>
+                        <button id="submit" type="submit" class="btn btn-secondary text-dark" disabled>Submit</button>
                     </div>
                     </form>
                 </div>
