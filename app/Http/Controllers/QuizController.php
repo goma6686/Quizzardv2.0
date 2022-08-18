@@ -17,6 +17,5 @@ class QuizController extends Controller
         $questions = Question::with('answers')->inRandomOrder()->simplePaginate(1);
         //return $question;
         return view('game.question', ['questions' => $questions]);
-
     }
 }
