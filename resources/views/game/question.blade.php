@@ -11,39 +11,38 @@
                                 <span class="text-gray-400 font-extrabold p-1">User</span>
                                 <span class="font-bold p-2 leading-loose bg-blue-500 text-gray rounded-lg">{{Auth::user()->name}}</span>
                             </h1>
-                            <!--<p class="mt-1 max-w-2xl text-sm text-gray-500">
-                                <span class="text-gray-400 font-extrabold p-1">Quiz Progress </span>
-                                <span class="font-bold p-3 leading-loose bg-blue-500 text-gray rounded-full">{{ $questions->currentPage() ."/". $questions->total()  }}</span>-->
-                            </p>
                         </div>
                     </div>
-                        <form> 
-                            @foreach ($questions as $question)
-                                <div class="px-4 justify-start py-5 sm:px-6">
-                                    <h3 class="text-lg leading-6 mb-2 font-medium text-gray-900">
-                                        <span class="mr-2 font-extrabold"> {{$question->question_text}}</span>
-                                    </h3>
-                                    
-                                        @foreach($question->answers as $a)
-                                            <div class="max-w-auto px-3 py-3 m-3 text-gray-800 rounded-lg border-2 border-gray-300 text-sm ">
-                                            <input id="question-{{$a->id}}" name="radiogroup" value=""  type="radio">
-                                                    <label for="question-{{$a->id}}">
-                                                        {{$a->answer_text}}
-                                                    </label>
-                                            </div>
-                                        @endforeach
-                                </div>
+                    {{ $questions->links() }}
+                        <form action="/ans" method="post">
+                        @csrf 
+                        @foreach ($questions as $question)
+                            <input type="hidden" name="question" value="{{$question->id}}">
+                            <input type="hidden" name="next" value="{{$questions->nextPageUrl()}}">
+                            <div class="px-4 justify-start py-5 sm:px-6">
+                                <h3 class="text-lg leading-6 mb-2 font-medium text-gray-900">
+                                    <span class="mr-2 font-extrabold"> {{$question->question_text}}</span>
+                                </h3>
+                                    <input type="hidden" name="ans" value="0">
+                                    @foreach($question->answers as $a)
+                                        <div class="max-w-auto px-3 py-3 m-3 text-gray-800 rounded-lg border-2 border-gray-300 text-sm ">
+                                        <input id="question{{$question->id . "-" . $a->id}}" name="ans" value="{{$a->is_correct}}"  type="checkbox">
+                                                <label for="question-{{$a->id}}">
+                                                    {{$a->answer_text}}
+                                                </label>
+                                        </div>
+                                    @endforeach
                             @endforeach
+                            </div>
                             <div class="flex items-center justify-end mt-4">
-                                {{--@if($count < $quizSize)--}} 
                                     <button  type="submit" class="m-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                                         {{ __('question') }}
                                     </button>
-                                    {{-- @else  
-                                    <button type="submit" @if($isDisabled) disabled='disabled' @endif class="m-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                                    {{--@else  
+                                    <button type="submit" class="m-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                                         {{ __('Show Results') }}
                                     </button>
-                                    @endif --}}
+                                    @endif--}}
                             </div>
                         </form>
                     </div>
