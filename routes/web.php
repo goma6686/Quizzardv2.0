@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/create', [QuestionController::class, 'index'])->name('create-question');
     Route::post('/create-question', [QuestionController::Class, 'store']);
     Route::get('/game', [QuizController::class, 'quiz'])->name('question');
+    Route::post('/ans', [QuizController::Class, 'store']);
 });
 
 //tik adminam
