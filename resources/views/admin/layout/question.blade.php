@@ -4,12 +4,12 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Question</th>
-                <th scope="col">Answer</th>
                 <th scope="col">Type</th>
                 <th scope="col">Category</th>
                 <th scope="col">Creator</th>
                 <th scope="col">Is Active?</th>
-                <th scope="col"></th>
+                <th scope="col">Edit Q</th>
+                <th scope="col">Edit A</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -25,9 +25,6 @@
                 <th>{{$counter}}</th>
                 <td>
                     {{$question->question_text}}
-                </td>
-                <td>
-                    {{$question->answers[0]->answer_text}}
                 </td>
                 <td>
                     {{$question->type}}
@@ -51,10 +48,13 @@
                     @endif
                 </td>
                 <td style="text-align: right;">
-                    <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
+                    <a href="#" class="btn btn-sm btn-dark " role="button" data-bs-toggle="modal" data-bs-target="#modal" data-bs-value="{{$question->id}}">Edit</a>
+                </td>
+                <td style="text-align: right;">
+                    <a href="#" class="btn btn-sm btn-dark " role="button" data-bs-toggle="modal" data-bs-target="#modal" data-bs-value="{{$question->id}}">Edit</a>
                 </td>
                 <td>
-                    <form action="" method="POST">
+                    <form action="/question/delete/{{$question->id}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete this post?')">Delete</button>
@@ -65,3 +65,58 @@
         </tbody>
     </table>
 </div>
+<!-- EDIT QUESTION MODAL -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Update Question</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="question_text" class="col-form-label">Question:</label>
+              <input type="text" class="form-control" id="question_text" value="{{ $question->question_text }}">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Category:</label>
+                <select class="form-control" name="category" type="category" required>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}"  > {{$category->name}} </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="is_active">Active?</label>
+                <input class="form-check-input" type="checkbox" @if ($question->is_active == 1) @checked(true) @endif value="{{$question->is_active}}" name="is_active">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary text-dark">Change</button>
+        </div>
+      </div>
+    </div>
+</div>
+<!--END OF EDIT QUESTION MODAL -->
+<script>
+    const exampleModal = document.getElementById('modal')
+    exampleModal.addEventListener('show.bs.modal', event => {
+    // Button that triggered the modal
+    const button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    const recipient = button.getAttribute('data-bs-value')
+    // If necessary, you could initiate an AJAX request here
+    // and then do the updating in a callback.
+    //
+    // Update the modal's content.
+    const modalTitle = exampleModal.querySelector('.modal-title')
+    const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+    modalTitle.textContent = `New message to ${recipient}`
+    modalBodyInput.value = recipient
+    })
+
+</script>

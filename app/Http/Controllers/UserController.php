@@ -33,7 +33,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->back();
+        return redirect('/admin-view#users/');
     }
 
     public function update(Request $request, $id)

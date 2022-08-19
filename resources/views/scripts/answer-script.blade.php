@@ -51,7 +51,7 @@
             document.getElementById('submit').disabled = true;
 
             //jei true-false, tada palieka 1 eilute
-            if (value === '3'){
+            if (value === '2'){
 
                 while (counter > 1){
                     document.getElementById("table").deleteRow(counter);

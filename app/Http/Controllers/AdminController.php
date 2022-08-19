@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Type;
 use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -14,9 +16,10 @@ class AdminController extends Controller
     public function index(Request $request){
         $categories = Category::all();
         $users = User::withCount(['questions'])->get();
-        $questions = Question::withWhereHas('answers', function ($query){
+        /*$questions = Question::withWhereHas('answers', function ($query){
             $query->where('is_correct', '=', 1);
-        })
+        })*/
+        $questions = DB::table('questions')
             ->join('users', 'questions.user_id', 'users.id')
             ->join('types', 'questions.type_id', 'types.id')
             ->join('categories', 'questions.category_id', 'categories.id')
@@ -48,7 +51,7 @@ class AdminController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy_category($id)
     {
         $category = Category::findOrFail($id);
         if($id != 1){
@@ -56,5 +59,13 @@ class AdminController extends Controller
             $category->delete();
         }
         return redirect('/admin-view#categories/');
+    }
+
+    public function destroy_question($id)
+    {
+        $question = Question::findOrFail($id);
+        Answer::where('question_id', $question->id)->delete();
+        $question->delete();
+        return redirect()->back();
     }
 }

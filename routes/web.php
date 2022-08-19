@@ -49,7 +49,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 
     Route::post('/category', [AdminController::Class, 'store']);
-    Route::delete('/category/delete/{id}', [AdminController::class, 'destroy']);
+    Route::delete('/category/delete/{id}', [AdminController::class, 'destroy_category']);
+
+    Route::delete('/question/delete/{id}', [AdminController::class, 'destroy_question']);
  });
 
  Auth::routes();
