@@ -18,7 +18,7 @@
     
             // Table columns
             cols += `<td><input class="form-control" type="text" name="answer_text[]" placeholder="Type here..." required=""></td>`;
-            cols += `<td><input type="hidden" name="is_correct[]" value="0" /><input type="checkbox" name="is_correct[]"  value="1" "></td>`
+            cols += `<td><input type="checkbox" name="is_correct[]"  value="${counter}" /></td>`
             cols += '<td><button class="btn btn-sm btn-danger" id ="deleteRow"></button></td>';
     
             // Insert the columns inside a row

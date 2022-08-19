@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Answer;
 use App\Models\Type;
@@ -25,10 +25,8 @@ class QuestionController extends Controller
             'type' => 'required',
             'category' => 'required',
         ]);
-        //gauni visus inputs
-        //$input = $request->all();
-        return Request::only('answer_text', 'is_correct');
-        return $input;
+        //gauni visus reikalingus inputs
+        $input =  $request->only('answer_text', 'is_correct', 'question_text', 'type', 'category');
 
         //save question
         $question = new Question();
@@ -38,29 +36,19 @@ class QuestionController extends Controller
         $question -> user_id = $request->user()->id;
         $question -> save();
         
-        foreach($input as $key => $value) {
-            $answer_text = null;
-            $is_correct = null;
-            
-            //randi answer_text__x value
-            if (preg_match('/^answer_text_[0-5]$/', $key)){
-                $answer_text = $value;
+        for ($i = 0; $i < count($input['answer_text']); $i++){ //ciklas suksis, kiek atsakymu yra
+            $answer = new Answer();
+            $answer -> answer_text = $input['answer_text'][$i];
+
+            foreach($input['is_correct'] as $a){
+                if ($i == $a){
+                    $answer -> is_correct = 1;
+                }
             }
-            //randi is_correct_x value
-            if (preg_match('/^is_correct_[0-5]$/', $key)){
-                $is_correct = $value;
-            }
-            //sukuri answer
-            if (isset($answer_text)){
-                $answer = new Answer();
-                $answer -> answer_text = $answer_text;
-                if(isset($is_correct)){
-                    $answer -> is_correct = $is_correct;
-                } //else nereikia, nes default yra false
-                $answer -> question_id = $question->id; //is katik sukurto q
-                $answer -> save();
-            }
+            $answer -> question_id = $question->id; //is katik sukurto q
+            $answer -> save();
         }
+
         return redirect()->back();
     }
 }
