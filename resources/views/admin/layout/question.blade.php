@@ -27,7 +27,7 @@
                     {{$question->question_text}}
                 </td>
                 <td>
-                    {{$question->question_text}}
+                    {{$question->answers[0]->answer_text}}
                 </td>
                 <td>
                     {{$question->type}}

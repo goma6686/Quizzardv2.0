@@ -40,7 +40,7 @@ class QuestionController extends Controller
             $answer = new Answer();
             $answer -> answer_text = $input['answer_text'][$i];
 
-            foreach($input['is_correct'] as $a){
+            foreach($input['is_correct'] as $a){ //jei atsakymo arr numeris sutampa su checkbox reiksme - iraso kaip teisinga
                 if ($i == $a){
                     $answer -> is_correct = 1;
                 }
