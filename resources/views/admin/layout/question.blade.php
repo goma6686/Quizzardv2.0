@@ -48,12 +48,12 @@
                         @endif
                     </td>
                     <td style="text-align: right;">
-                        <a href="#edit{{$question->id}}" data-bs-toggle="modal" class="btn btn-sm btn-dark">Edit</a>
+                        <a href="#editQuestion{{$question->id}}" data-bs-toggle="modal" class="btn btn-sm btn-dark">Edit</a>
                     </td>
                     <td style="text-align: right;">
-                        <a href="#" class="btn btn-sm btn-dark ">Edit</a>
+                        <a href="#editAnswer{{$question->id}}" data-bs-toggle="modal" class="btn btn-sm btn-dark ">Edit</a>
                     </td>
-                    @include('action')
+                    @include('admin.layout.edit-modal')
                     <td>
                         <form action="/question/delete/{{$question->id}}" method="POST">
                             @csrf

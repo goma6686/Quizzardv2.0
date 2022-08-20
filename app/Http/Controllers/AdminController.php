@@ -15,18 +15,19 @@ class AdminController extends Controller
 {
     public function index(Request $request){
         $categories = Category::all();
+        $types = Type::all();
         $users = User::withCount(['questions'])->get();
         /*$questions = Question::withWhereHas('answers', function ($query){
             $query->where('is_correct', '=', 1);
         })*/
-        $questions = DB::table('questions')
+        $questions = Question::with('answers')
             ->join('users', 'questions.user_id', 'users.id')
             ->join('types', 'questions.type_id', 'types.id')
             ->join('categories', 'questions.category_id', 'categories.id')
             ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
             ->get();
         //return $questions;
-        return view('admin.admin', compact('categories', 'users', 'questions'));
+        return view('admin.admin', compact('categories', 'users', 'questions', 'types'));
     }
 
     public function update_question(Request $request, $id){
@@ -40,6 +41,36 @@ class AdminController extends Controller
         }
         $question -> category_id = $input['category_id'];
         $question->fill($input)->save();
+ 
+        return redirect()->back();
+    }
+
+    public function update_answer(Request $request, $id){
+        $answers = DB::table('answers')->where('question_id', '=', $id)->get();
+
+        $input = $request->all();
+        
+        $a = json_decode(json_encode($answers), true);
+
+        for ($i = 0; $i < count($input['answer_text']); $i++){ //ciklas suksis, kiek atsakymu yra
+
+            if ($input['answer_text'][$i] !== $a[$i]['answer_text']  ){
+                $answer = Answer::findOrFail($a[$i]['id']);
+                $answer -> answer_text = $input['answer_text'][$i];
+                $answer -> save();
+            }
+
+            /*
+            if(isset($input['is_correct'])){
+                foreach($input['is_correct'] as $a){ //jei atsakymo arr numeris sutampa su checkbox reiksme - iraso kaip teisinga
+                    if ($i == $a){
+                        $answer -> is_correct = 1;
+                    }
+                }
+            }*/
+            //$answer -> save();
+        }
+        //return compact('input', 'a');
  
         return redirect()->back();
     }

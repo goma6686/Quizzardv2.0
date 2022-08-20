@@ -7,55 +7,56 @@
                     {{ Html::ul($errors->all()) }}
                     <form enctype="multipart/form-data" method="POST" action="/create-question">
                         @csrf
-                    <div class="form-group pt-4 mb-4">
-                        <label>Question Text:</label>
-                        <input type="text" name="question_text" class="form-control" required="">
-                    </div>
+                        <div class="form-group pt-4 mb-4">
+                            <label>Question Text:</label>
+                            <input type="text" name="question_text" class="form-control" required="">
+                        </div>
 
-                    <div class="col-md-2">
-                        <label for="category">Category:</label>
-                        <select class="form-control" name="category" type="category" required>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}"  > {{$category->name}} </option>
-                                @endforeach
+                        <div class="col-md-2">
+                            <label for="category">Category:</label>
+                            <select class="form-control" name="category" type="category" required>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"  > {{$category->name}} </option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-2 pt-4">
+                        <label>Choose Answer Type:</label>
+                        <br>
+                        <select class="form-control" name="type" id="options">
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}" @selected(old('type') == $type)>
+                                    {{$type->name}}
+                                </option>
+                            @endforeach
                         </select>
-                    </div>
-                    <div class="col-md-2 pt-4">
-                    <label>Choose Answer Type:</label>
-                    <br>
-                    <select class="form-control" name="type" id="options">
-                        @foreach ($types as $type)
-                            <option value="{{ $type->id }}" @selected(old('type') == $type)>
-                                {{$type->name}}
-                            </option>
-                        @endforeach
-                    </select>
-                    </div>
+                        </div>
 
                    <div class="form-group pt-4 mb-4">
-                    <label>Answers:</label>
-                    <div class="table-responsive">
-                        <table id="table" class="table border-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Answer Text</th>
-                                    <th scope="col">Is Correct</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="text" name="answer_text[]" class="form-control" placeholder="Type here..." required=""></td>
-                                    <td>
-                                        <input type="checkbox" name="is_correct[]" value="0"/>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-secondary text-dark" id="insertRow">Add</button></div>
+                        <label>Answers:</label>
+                        <div class="table-responsive">
+                            <table id="table" class="table border-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Answer Text</th>
+                                        <th scope="col">Is Correct</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" name="answer_text[]" class="form-control" placeholder="Type here..." required=""></td>
+                                        <td>
+                                            <input type="checkbox" name="is_correct[]" value="0"/>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-secondary text-dark" id="insertRow">Add</button>
+                        </div>
                     </div>
                     
                     <div class="text-center">

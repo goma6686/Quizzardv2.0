@@ -52,7 +52,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/category', [AdminController::Class, 'store']);
     Route::delete('/category/delete/{id}', [AdminController::class, 'destroy_category']);
 
-    Route::post('/update/{id}', [AdminController::class, 'update_question'])->name('question.update');
+    Route::post('/update/answer/{id}', [AdminController::class, 'update_answer'])->name('answer.update');
+
+    Route::post('/update/question/{id}', [AdminController::class, 'update_question'])->name('question.update');
     Route::delete('/question/delete/{id}', [AdminController::class, 'destroy_question']);
  });
 
