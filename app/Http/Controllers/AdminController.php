@@ -29,6 +29,22 @@ class AdminController extends Controller
         return view('admin.admin', compact('categories', 'users', 'questions'));
     }
 
+    public function update_question(Request $request, $id){
+        $question = Question::find($id);
+        $input = $request->all();
+
+        if(isset($input['is_active'])){
+            $question->is_active = '1';
+        } else {
+            $question->is_active = '0';
+        }
+        $question -> category_id = $input['category_id'];
+        $question->fill($input)->save();
+ 
+        return redirect()->back();
+    }
+ 
+
     public function store(Request $request)
     {
         request()->validate([
