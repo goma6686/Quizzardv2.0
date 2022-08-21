@@ -30,12 +30,11 @@ class QuizController extends Controller
         else{
             $gotxp = $ans;
         }
-        
+        if(in_array(date("l"), ["Saturday", "Sunday"])){
+            $gotxp = $gotxp * 2; // double xp weekend:)
+        }
         $currentxp = DB::table('users')->where('id', $user)->value('xp');
         $totalxp = $currentxp + $gotxp;
-        if(in_array(date("l"), ["Saturday", "Sunday"])){
-            $totalxp = $totalxp * 2; // double xp weekend:)
-        }
         $added = DB::table('users')->where('id', $user)->update(['xp' => $totalxp]); //atnaujinamas xp kiekis
         return redirect()->to($next); //einama prie kito klausimo
     }     
