@@ -27,7 +27,7 @@
                                     <input type="hidden" name="ans" value="0">
                                     @foreach($question->answers as $a)
                                         <div class="max-w-auto px-3 py-3 m-3 text-gray-800 rounded-lg border-2 border-gray-300 text-sm ">
-                                        <input id="question{{$question->id . "-" . $a->id}}" name="ans" value="{{$a->is_correct}}"  type="checkbox">
+                                        <input id="question{{$question->id . "-" . $a->id}}" name="ans[]" value="{{$a->is_correct}}"  type="checkbox">
                                                 <label for="question-{{$a->id}}">
                                                     {{$a->answer_text}}
                                                 </label>

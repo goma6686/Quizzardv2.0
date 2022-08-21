@@ -15,18 +15,25 @@ use Carbon\Carbon;
 
 class QuizController extends Controller
 {
-    public function quiz(Request $request){
+    public function quiz(Request $request){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
     	$questions = Question::with('answers')->inRandomOrder(date('Ymd'))->paginate(1);
         return view('game.question', ['questions' => $questions]);
     }
     public function store(Request $request){
-    	$id = $request->input('question');
+    	$id = $request->input('question'); //gaunami pasirinkti atsakymai
         $user = $request->input('user');
     	$next = $request->input('next');
         $ans = $request->input('ans'); 
+        if(is_array($ans)){ //jei pasirinkti keli, ju rezultatai sumuojami
+            $gotxp = array_sum($ans);
+        }
+        else{
+            $gotxp = $ans;
+        }
+        
         $currentxp = DB::table('users')->where('id', $user)->value('xp');
-        $totalxp = $currentxp + $ans;
-        $added = DB::table('users')->where('id', $user)->update(['xp' => $totalxp]);
-        return redirect()->to($next);
+        $totalxp = $currentxp + $gotxp;
+        $added = DB::table('users')->where('id', $user)->update(['xp' => $totalxp]); //atnaujinamas xp kiekis
+        return redirect()->to($next); //einama prie kito klausimo
     }     
 }
