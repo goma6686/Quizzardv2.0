@@ -21,8 +21,12 @@ class QuizController extends Controller
     }
     public function store(Request $request){
     	$id = $request->input('question');
+        $user = $request->input('user');
     	$next = $request->input('next');
         $ans = $request->input('ans'); 
+        $currentxp = DB::table('users')->where('id', $user)->value('xp');
+        $totalxp = $currentxp + $ans;
+        $added = DB::table('users')->where('id', $user)->update(['xp' => $totalxp]);
         return redirect()->to($next);
     }     
 }

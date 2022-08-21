@@ -19,6 +19,7 @@
                         @foreach ($questions as $question)
                             <input type="hidden" name="question" value="{{$question->id}}">
                             <input type="hidden" name="next" value="{{$questions->nextPageUrl()}}">
+                            <input type="hidden" name="user" value="{{Auth::user()->id}}">
                             <div class="px-4 justify-start py-5 sm:px-6">
                                 <h3 class="text-lg leading-6 mb-2 font-medium text-gray-900">
                                     <span class="mr-2 font-extrabold"> {{$question->question_text}}</span>
