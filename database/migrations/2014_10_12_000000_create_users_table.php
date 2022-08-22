@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('xp')->default(0);
+            $table->string('profile_pic')->default("https://picsum.photos/125.jpg");
             $table->string('email')->unique();
             $table->string('is_admin')->default(0);
             $table->boolean('is_active')->default(1);

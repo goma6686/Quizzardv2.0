@@ -7,7 +7,7 @@
         	<div class="row">
         	  <div class = "col-4"></div>
 	          <div class = "col-2">
-				<img src="https://meme.museum/_thumbs/36fe5197d2733b659f0c64f6414a33de/thumb.jpg" style="height: 125px !important">
+				<img src="{{ $user->profile_pic }}" style="height: 125px !important">
 		      </div>
 		      <div class = "col-2" style="line-height: 40px">
 				<p class="m-b-10">{{ $user->email }}</p>
