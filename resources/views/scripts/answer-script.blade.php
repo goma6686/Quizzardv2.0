@@ -29,6 +29,7 @@
     
             // Increase counter after each row insertion
             counter++;
+            //max 5 answers
             if (counter === 5){
                 document.getElementById('insertRow').disabled = true;
             }
@@ -39,7 +40,7 @@
             $(this).closest("tr").remove();
             counter -= 1;
 
-            if(counter >= 2){
+            if(counter >= 3){ //min 3 answers
                 document.getElementById('submit').disabled = false;
             } else {
                 document.getElementById('submit').disabled = true;
@@ -59,12 +60,7 @@
                 }
                 document.getElementById('insertRow').disabled = true;
                 document.getElementById('submit').disabled = false; //leist siust 1 answr, nes true-false
-
-            } else { //jei simple || multi, tai max 5 answers
-                if (counter < 5){
-                document.getElementById('insertRow').disabled = false;
-
-            }
+            } 
             }
         });
     });
