@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Input;
 
 class QuestionController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
         $categories = Category::all();
-        $types = Type::all();
+        $types = DB::table('types')->orderByDesc('id')->get();
         return view('layouts.create-question', ['categories' => $categories, 'types' => $types]);
     }
 
@@ -36,7 +36,7 @@ class QuestionController extends Controller
         $question -> user_id = $request->user()->id;
         $question -> save();
         
-        for ($i = 0; $i < count($input['answer_text']); $i++){ //ciklas suksis, kiek atsakymu yra
+        for ($i = 0; $i < count(array_filter($input['answer_text'])); $i++){ //ciklas suksis, kiek atsakymu yra
             $answer = new Answer();
             $answer -> answer_text = $input['answer_text'][$i];
 
