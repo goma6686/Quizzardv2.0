@@ -1,12 +1,12 @@
 <!-- Edit Question Modal -->
 <div class="modal fade" id="editQuestion{{$question->id}}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="myModalLabel">Edit Question</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form enctype="multipart/form-data" method="POST" action="{{route('question.update', $question->id)}}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Edit Question</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form enctype="multipart/form-data" method="POST" action="{{route('question.update', $question->id)}}">
             @csrf
             <div class="modal-body">
                 <div class="mb-3">
@@ -27,23 +27,23 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-              <button type="submit" class="btn btn-primary text-dark">Submit</button>
+                <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                <button type="submit" class="btn btn-primary text-dark">Submit</button>
             </div>
             </form>
-      </div>
+        </div>
     </div>
 </div>
 
 <!-- Edit Answer Modal -->
 <div class="modal fade" id="editAnswer{{$question->id}}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="myModalLabel">Edit Answers</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form enctype="multipart/form-data" method="POST" action="{{route('answer.update', $question->id)}}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Edit Answers</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form enctype="multipart/form-data" method="POST" action="{{route('answer.update', $question->id)}}">
             @csrf
             <div class="modal-body">
                 <div class="mb-3">
@@ -58,13 +58,22 @@
                     <div class="mb-3">
                         <label for="answer_text">Answer Text</label>
                         <input type="text" id="answer_text" name="answer_text[]" value="{{ old('answer_text', $a->answer_text) }}" class="form-control" required>
-                    </div>
+                        
+                        <label >is correct?</label>
+                        <!--
+                        <input class="form-check-input" type="checkbox" 
+                            {{--@if ($a->is_correct == 1) @checked(true) @endif--}}
+                        value="0" name="is_correct[]">
+                        -->
+                        <input type="hidden" name="is_correct[]" value="{{ $a->id }}" />
+                        <input class="form-check-input" name="is_correct[]" value="{{ $a->id }}" type="checkbox" @if ($a->is_correct == 1) @checked(true) @endif>
 
+                    </div>
                 @endforeach
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
-              <button type="submit" class="btn btn-primary text-dark">Submit</button>
+                <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                <button type="submit" class="btn btn-primary text-dark">Submit</button>
             </div>
             </form>
       </div>

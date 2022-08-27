@@ -17,16 +17,12 @@ class AdminController extends Controller
         $categories = Category::all();
         $types = Type::all();
         $users = User::withCount(['questions'])->get();
-        /*$questions = Question::withWhereHas('answers', function ($query){
-            $query->where('is_correct', '=', 1);
-        })*/
         $questions = Question::with('answers')
             ->join('users', 'questions.user_id', 'users.id')
             ->join('types', 'questions.type_id', 'types.id')
             ->join('categories', 'questions.category_id', 'categories.id')
             ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
             ->get();
-        //return $questions;
         return view('admin.admin', compact('categories', 'users', 'questions', 'types'));
     }
 
@@ -46,31 +42,33 @@ class AdminController extends Controller
     }
 
     public function update_answer(Request $request, $id){
-        $answers = DB::table('answers')->where('question_id', '=', $id)->get();
+        //gaunu visus buvusius answers
+        $data = DB::table('answers')->where('question_id', '=', $id)->get(); 
+        $answers_old = json_decode(json_encode($data), true);
 
+        //gaunu visa input
         $input = $request->all();
-        
-        $a = json_decode(json_encode($answers), true);
 
-        for ($i = 0; $i < count($input['answer_text']); $i++){ //ciklas suksis, kiek atsakymu yra
+        for ($i = 0; $i < count($input['answer_text']); $i++) { //ciklas suksis, kiek ats yra
+            
+            $answer = Answer::findOrFail($answers_old[$i]['id']);
 
-            if ($input['answer_text'][$i] !== $a[$i]['answer_text']  ){
-                $answer = Answer::findOrFail($a[$i]['id']);
+            if ( strcmp($input['answer_text'][$i], $answers_old[$i]['answer_text'])  !== 0 ){
                 $answer -> answer_text = $input['answer_text'][$i];
-                $answer -> save();
             }
 
-            /*
-            if(isset($input['is_correct'])){
-                foreach($input['is_correct'] as $a){ //jei atsakymo arr numeris sutampa su checkbox reiksme - iraso kaip teisinga
-                    if ($i == $a){
-                        $answer -> is_correct = 1;
-                    }
-                }
-            }*/
-            //$answer -> save();
+            $answer -> save();
         }
-        //return compact('input', 'a');
+
+        for ($i = 0; $i < count($answers_old); $i++){
+            $answer = Answer::findOrFail($answers_old[$i]['id']);
+            if ( count(array_keys($input['is_correct'], $answer->id)) === 2 ){
+                $answer->is_correct = 1;
+            } else {
+                $answer->is_correct = 0;
+            }
+            $answer -> save();
+        }
  
         return redirect()->back();
     }
