@@ -23,6 +23,10 @@ class UserController extends Controller
         return view('test', ['types' => $type, 'categories' => $categories]);
     }
 
+    public function leaderboard(Request $request){
+        return view('leaderboard');
+    }
+
     public function edit($id)
     {
         $user = User::findOrFail($id);

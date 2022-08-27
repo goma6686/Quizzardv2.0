@@ -20,6 +20,9 @@ class CategorySeeder extends Seeder
                 ['id' => '1', 'name' => 'Unknown'],
                 ['id' => '2', 'name' => 'Art'],
                 ['id' => '3', 'name' => 'History'],
+                ['id' => '4', 'name' => 'Science'],
+                ['id' => '5', 'name' => 'Computer Science'],
+                ['id' => '6', 'name' => 'Sports'],
         ]);
     }
 }

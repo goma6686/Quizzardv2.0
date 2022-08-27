@@ -46,6 +46,9 @@
             <form enctype="multipart/form-data" method="POST" action="{{route('answer.update', $question->id)}}">
             @csrf
             <div class="modal-body">
+                <div class="mb-3 text-center">
+                    <label for="question">{{$question->question_text}}</label>
+                </div>
                 <div class="mb-3">
                     <label for="type">Type</label>
                     <select class="form-control" name="type_id" type="type_id" required>
@@ -60,11 +63,6 @@
                         <input type="text" id="answer_text" name="answer_text[]" value="{{ old('answer_text', $a->answer_text) }}" class="form-control" required>
                         
                         <label >is correct?</label>
-                        <!--
-                        <input class="form-check-input" type="checkbox" 
-                            {{--@if ($a->is_correct == 1) @checked(true) @endif--}}
-                        value="0" name="is_correct[]">
-                        -->
                         <input type="hidden" name="is_correct[]" value="{{ $a->id }}" />
                         <input class="form-check-input" name="is_correct[]" value="{{ $a->id }}" type="checkbox" @if ($a->is_correct == 1) @checked(true) @endif>
 

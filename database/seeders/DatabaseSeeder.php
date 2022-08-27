@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             TypeSeeder::class,
+            QuestionSeeder::class,
         ]);
         $this->command->info('All tables seeded successfully!');
     }

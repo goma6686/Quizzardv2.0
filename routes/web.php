@@ -37,10 +37,12 @@ Route::group(['middleware' => ['auth']], function() {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/leaderboard', [UserController::class, 'leaderboard'])->name('leaderboard');
+
     Route::get('/create', [QuestionController::class, 'index'])->name('create-question');
-    Route::post('/create-question', [QuestionController::Class, 'store']);
+    Route::post('/create-question', [QuestionController::class, 'store']);
     Route::get('/game', [QuizController::class, 'quiz'])->name('question');
-    Route::post('/ans', [QuizController::Class, 'store']);
+    Route::post('/ans', [QuizController::class, 'store']);
 });
 
 //tik adminam
@@ -49,7 +51,7 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 
-    Route::post('/category', [AdminController::Class, 'store']);
+    Route::post('/category', [AdminController::class, 'store']);
     Route::delete('/category/delete/{id}', [AdminController::class, 'destroy_category']);
 
     Route::post('/update/answer/{id}', [AdminController::class, 'update_answer'])->name('answer.update');
