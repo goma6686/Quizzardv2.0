@@ -40,7 +40,6 @@
                                     <tr>
                                         <th scope="col">Answer Text</th>
                                         <th scope="col">Is Correct</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,18 +48,15 @@
                                         <td>
                                             <input type="checkbox" name="is_correct[]" value="0"/>
                                         </td>
-                                        <td></td>
                                     </tr>
+
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-secondary text-dark" id="insertRow">Add</button>
                         </div>
                     </div>
                     
                     <div class="text-center">
-                        <button id="submit" type="submit" class="btn btn-secondary text-dark" disabled>Submit</button>
+                        <button id="submit" type="submit" class="btn btn-secondary text-dark">Submit</button>
                     </div>
                     </form>
                 </div>
