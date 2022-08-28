@@ -12,9 +12,8 @@
 		      <div class = "col-2" style="line-height: 40px">
 				<p class="m-b-10">{{ $user->email }}</p>
 	            <p><strong>{{ $user->name }}</strong></p>
-	        	<div class="progress position-relative">
-  				  <div class="progress-bar" role="progressbar" style="width: {{ $user->xp%100 }}%" aria-valuemin="0" aria-valuemax="100"><small class="justify-content-center d-flex position-absolute w-100" style="-webkit-text-stroke-width: .25px;
-  -webkit-text-stroke-color: black;">{{ $user->xp%100 . '/100 XP' }}</small></div>
+	        	<div class="progress position-relative" style="background-color: #aaa; -webkit-box-shadow: none; box-shadow: none;">
+  				  <div class="progress-bar" role="progressbar" style="width: {{ $user->xp%100 }}%" aria-valuemin="0" aria-valuemax="100"><small class="justify-content-center d-flex position-absolute w-100">{{ $user->xp%100 . '/100 XP' }}</small></div>
   				</div>
   				<span class="badge bg-primary">LVL {{ intval($user->xp/100) }}</span>
 			  </div>
