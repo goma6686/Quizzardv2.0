@@ -17,14 +17,9 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
     }
 
-    public function test(Request $request){
-        $type = Type::all();
-        $categories = Category::all();
-        return view('test', ['types' => $type, 'categories' => $categories]);
-    }
-
-    public function leaderboard(Request $request){
-        return view('leaderboard');
+    public function leaderboard(){
+        $users = DB::table('users')->orderByDesc('xp')->get();
+        return view('leaderboard', ['users' => $users]);
     }
 
     public function edit($id)

@@ -12,11 +12,13 @@
                             </tr>
                             </thead>
                             <tbody>
+                                @foreach($users as $user)
                             <tr >
-                                <td>1</td>
-                                <td>BENIS</td>
-                                <td>999</td>
+                                <td>0</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->xp}}</td>
                             </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

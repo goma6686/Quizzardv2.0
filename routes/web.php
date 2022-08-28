@@ -23,9 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//DELETE LATER VV
-Route::get('/test', [UserController::class, 'test'])->name('test');
-
 //user-related
 Route::get('/user/{id}', [UserController::class, 'show'])->name('profile');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
