@@ -18,7 +18,6 @@
                         @csrf 
                         @foreach ($questions as $question)
                             <input type="hidden" name="question" value="{{$question->id}}">
-                            <input type="hidden" name="next" value="{{$questions->nextPageUrl()}}">
                             <input type="hidden" name="user" value="{{Auth::user()->id}}">
                             <div class="px-4 justify-start py-5 sm:px-6">
                                 <h3 class="text-lg leading-6 mb-2 font-medium text-gray-900">
@@ -36,14 +35,17 @@
                             @endforeach
                             </div>
                             <div class="flex items-center justify-end mt-4">
+                                    @if($questions->hasMorePages() == 1)
+                                    <input type="hidden" name="next" value="{{$questions->nextPageUrl()}}">
                                     <button  type="submit" class="m-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                                        {{ __('question') }}
+                                        {{ __('Next') }}
                                     </button>
-                                    {{--@else  
+                                    @else
+                                    <input type="hidden" name="next" value="none">
                                     <button type="submit" class="m-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                                        {{ __('Show Results') }}
+                                        {{ __('End game') }}
                                     </button>
-                                    @endif--}}
+                                    @endif
                             </div>
                         </form>
                     </div>
