@@ -18,7 +18,7 @@ class UserController extends Controller
     }
 
     public function leaderboard(){
-        $users = DB::table('users')->orderByDesc('xp')->get();
+        $users = DB::table('users')->orderByDesc('xp')->limit(15)->get();
         return view('leaderboard', ['users' => $users]);
     }
 

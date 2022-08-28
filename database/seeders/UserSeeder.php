@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
 
         User::create($data); //one admin
         User::create($data2);
-        User::factory(5)->create(); //5 random
+        User::factory(30)->create(); //5 random
 
         DB::update('UPDATE users SET profile_pic = CONCAT("https://picsum.photos/seed/", name, "/125.jpg")');
     }

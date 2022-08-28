@@ -33,7 +33,7 @@ class QuestionSeeder extends Seeder
             'question_id' => 1,
         ];
 
-        Question::create($question1); //one admin
+        Question::create($question1);
         Answer::create($answer1);
     }
 }
