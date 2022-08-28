@@ -14,7 +14,7 @@
                             <tbody>
                                 @foreach($users as $user)
                             <tr >
-                                <td>0</td>
+                                <td>{{ ($loop->index)+1 }}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->xp}}</td>
                             </tr>

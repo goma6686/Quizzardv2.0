@@ -15,15 +15,9 @@
         </tr>
     </thead>
     <tbody>
-        @php
-            $counter = 0;
-        @endphp
         @foreach ($users as $user)
-        @php
-            $counter++;
-        @endphp
             <tr scope="row">
-                <th>{{$counter}}</th>
+                <th>{{($loop->index)+1}}</th>
                 <td>
                     <a href="/user/{{$user->id}}" class="btn" role="button"> {{$user->name}}</a>
                 </td>
@@ -78,6 +72,3 @@
     </tbody>
 </table>
 </div>
-@if($counter == 0)
-<h3 style="text-align: center;">No users found :(</h3>
-@endif
