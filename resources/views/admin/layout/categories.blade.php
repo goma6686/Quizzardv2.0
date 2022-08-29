@@ -10,7 +10,7 @@
         @foreach ($categories as $category)
         @if ($loop->first) @continue @endif
             <tr scope="row">
-                <th>{{($loop->index)+1}}</th>
+                <th>{{($loop->index)}}</th>
                 <td>
                     {{$category->name}}
                 </td>

@@ -16,7 +16,7 @@ use Carbon\Carbon;
 
 class QuizController extends Controller
 {
-    public function quiz(Request $request){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
+    public function quiz(){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
     	$questions = Question::with('answers')->inRandomOrder(date('Ymd'))->paginate(1);
         return view('game.question', ['questions' => $questions]);
     }
