@@ -16,15 +16,20 @@
                             </div>
                         </div>
                         <div class="text-center">
+                          @if(null !== $seed)
+                            You played by seed {{$seed}}, got {{$gamescore}} questions correct, and
+                            earned {{$gamexp}}XP
+                          @else
                             You got {{$gamescore}} questions correct, and
                             earned {{$gamexp}}XP
+                          @endif
                         </div>
                         <div class="row text-center">
                           <div class = "col-3"></div>
                           <div class = "col-2" style="line-height: 40px">
                             <p><strong>{{ $user->name }}</strong></p>
                             <div class="progress position-relative" style="background-color: #aaa; -webkit-box-shadow: none; box-shadow: none;">
-                              <div class="progress-bar" role="progressbar" style="width: {{ ($user->xp-$gamexp)%100 }}%" aria-valuemin="0" aria-valuemax="100"><small class="justify-content-center d-flex position-absolute w-100">{{ $user->xp-$gamexp%100 . '/100 XP' }}</small></div>
+                              <div class="progress-bar" role="progressbar" style="width: {{ ($user->xp-$gamexp)%100 }}%" aria-valuemin="0" aria-valuemax="100"><small class="justify-content-center d-flex position-absolute w-100">{{ ($user->xp-$gamexp)%100 . '/100 XP' }}</small></div>
                             </div>
                             <span class="badge bg-primary">LVL {{ intval(($user->xp-$gamexp)/100) }}</span>
                           </div>

@@ -16,10 +16,34 @@ use Carbon\Carbon;
 
 class QuizController extends Controller
 {
+
     public function quiz(){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
     	$questions = Question::with('answers')->inRandomOrder(date('Ymd'))->paginate(1);
         return view('game.question', ['questions' => $questions]);
     }
+
+    public function getseed(Request $request){
+        return view('game.seed');
+    }
+    public function seedquiz(Request $request){ //paimami klausimai is db, eiliuojami pagal vartotojo seed ir pateikiami po viena
+        if(null !== session('seed')){
+            
+        }
+        else{
+            $seed = '"' . $request->input('seed') . '"';
+            $request->session()->put('seed', $seed);
+        }
+        
+        $questions = Question::with('answers')->inRandomOrder($request->session()->get('seed'))->paginate(1);
+        return view('game.question', ['questions' => $questions]);
+    }
+
+    public function categoryquiz(Request $request){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
+        $questions = Question::with('answers')->inRandomOrder(date('Ymd'))->paginate(1);
+        return view('game.question', ['questions' => $questions]);
+    }
+
+
     public function store(Request $request){
     	$id = $request->input('question'); //gaunami pasirinkti atsakymai
         $user = $request->input('user');
@@ -45,7 +69,7 @@ class QuizController extends Controller
         }
         else{
             $user = User::findOrFail($user);
-            return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
+            return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore'), 'seed' => $request->session()->pull('seed')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
         }
     }     
 }
