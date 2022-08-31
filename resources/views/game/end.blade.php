@@ -16,8 +16,13 @@
                             </div>
                         </div>
                         <div class="text-center">
+                          @if(null !== $seed)
+                            You played by seed {{$seed}}, got {{$gamescore}} questions correct, and
+                            earned {{$gamexp}}XP
+                          @else
                             You got {{$gamescore}} questions correct, and
                             earned {{$gamexp}}XP
+                          @endif
                         </div>
                         <div class="row text-center">
                           <div class = "col-3"></div>

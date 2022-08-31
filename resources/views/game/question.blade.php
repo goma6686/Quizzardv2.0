@@ -11,10 +11,9 @@
                             <h1 class="text-sm leading-6 font-medium text-gray-900">
                                 <span class="text-gray-400 font-extrabold p-1">User</span>
                                 <span class="font-bold p-2 leading-loose bg-blue-500 text-gray rounded-lg">{{Auth::user()->name}}</span>
+                                <span class="text-gray-400 font-extrabold p-1">Playing seed</span>
+                                <span class="font-bold p-2 leading-loose bg-blue-500 text-gray rounded-lg">{{session('seed')}}</span>
                             </h1>
-                            {{session('seed')}}
-
-
                         </div>
                     </div>
                     {{ $questions->links() }}
