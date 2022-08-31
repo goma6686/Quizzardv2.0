@@ -38,8 +38,14 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/create', [QuestionController::class, 'index'])->name('create-question');
     Route::post('/create-question', [QuestionController::class, 'store']);
-    Route::get('/game', [QuizController::class, 'quiz'])->name('question');
-    Route::post('/ans', [QuizController::class, 'store']);
+    Route::group(['middleware' => ['web']], function () {
+        Route::get('/game', [QuizController::class, 'quiz'])->name('question');
+        Route::get('/getseed', [QuizController::class, 'getseed']);
+        Route::post('/seed', [QuizController::class, 'seedquiz']);
+        Route::get('/seed', [QuizController::class, 'seedquiz']);
+        Route::get('/categorygame', [QuizController::class, 'category']);
+        Route::post('/ans', [QuizController::class, 'store']);
+    });
 });
 
 //tik adminam

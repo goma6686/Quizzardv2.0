@@ -1,4 +1,5 @@
 <x-app-layout>
+    @php session_start(); @endphp
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -11,6 +12,9 @@
                                 <span class="text-gray-400 font-extrabold p-1">User</span>
                                 <span class="font-bold p-2 leading-loose bg-blue-500 text-gray rounded-lg">{{Auth::user()->name}}</span>
                             </h1>
+                            {{session('seed')}}
+
+
                         </div>
                     </div>
                     {{ $questions->links() }}
