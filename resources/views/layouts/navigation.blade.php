@@ -1,9 +1,11 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-dark-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="sm:flex sm:items-start">
+                <x-application-logo></x-application-logo>
+            </div>
+            <div class="flex justify-content-center">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
