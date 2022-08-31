@@ -7,16 +7,10 @@
         </tr>
     </thead>
     <tbody>
-        @php
-            $counter = 0;
-        @endphp
         @foreach ($categories as $category)
         @if ($loop->first) @continue @endif
-        @php
-            $counter++;
-        @endphp
             <tr scope="row">
-                <th>{{$counter}}</th>
+                <th>{{($loop->index)}}</th>
                 <td>
                     {{$category->name}}
                 </td>

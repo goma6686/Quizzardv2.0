@@ -14,15 +14,9 @@
             </tr>
         </thead>
         <tbody>
-            @php
-            $counter = 0;
-            @endphp
             @foreach ($questions as $question)
-                @php
-                $counter++;
-                @endphp
                 <tr scope="row">
-                    <th>{{$counter}}</th>
+                    <th>{{($loop->index)+1}}</th>
                     <td>
                         {{$question->question_text}}
                     </td>
@@ -65,4 +59,6 @@
             @endforeach
         </tbody>
     </table>
+    
+{{ $questions->links() }}
 </div>
