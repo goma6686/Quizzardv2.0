@@ -1,9 +1,9 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-dark-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-16"  style="position:relative;">
                 <x-application-logo></x-application-logo>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center" style="position:absolute; top: 30%; left: 31%;">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('create-question')" :active="request()->routeIs('create-question')">
