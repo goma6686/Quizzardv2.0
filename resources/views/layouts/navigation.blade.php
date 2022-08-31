@@ -2,9 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="sm:flex sm:items-start">
                 <x-application-logo></x-application-logo>
-            </div>
             <div class="d-flex justify-content-center">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

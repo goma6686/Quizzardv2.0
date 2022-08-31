@@ -1,3 +1,1 @@
-<a href="/dashboard" >
-<img src="/images/logo/Logo.png" style="align-content: start;height:100%;" >
-</a>
+<a style="width:220px" href="/dashboard"><img src="/images/logo/Logo.png" style="align-content: start;height:100%;"></a>
