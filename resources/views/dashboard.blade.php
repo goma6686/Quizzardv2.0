@@ -1,14 +1,7 @@
 <x-app-layout>
-    <div class="col center" id="app">
-        <a href="/game">
-            <div class="text">
-                <span>A</span>
-                <span>R</span>
-                <span>C</span>
-                <span>A</span>
-                <span>D</span>
-                <span>E</span>
-            </div>
-        </a>
-    </div>
+    <div class="full position-relative">
+        <div class="d-grid gap-2 col-6 mx-auto text-align: center">
+            <a class="btn btn-outline-dark" type="button" href="/game">Arcade</a>
+            <a class="btn btn-outline-dark" type="button">Categories</a>
+        </div>
 </x-app-layout>
