@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Type;
-use App\Models\Category;
 use App\Models\Question;
-use App\Models\Answer;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\Paginator;
-use Carbon\Carbon;
 
 class QuizController extends Controller
 {
@@ -22,7 +15,7 @@ class QuizController extends Controller
         return view('game.question', ['questions' => $questions]);
     }
 
-    public function getseed(Request $request){
+    public function getseed(){
         return view('game.seed');
     }
     public function seedquiz(Request $request){ //paimami klausimai is db, eiliuojami pagal vartotojo seed ir pateikiami po viena
@@ -38,7 +31,7 @@ class QuizController extends Controller
         return view('game.question', ['questions' => $questions]);
     }
 
-    public function categoryquiz(Request $request){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
+    public function categoryquiz(){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
         $questions = Question::with('answers')->inRandomOrder(date('Ymd'))->paginate(1);
         return view('game.question', ['questions' => $questions]);
     }

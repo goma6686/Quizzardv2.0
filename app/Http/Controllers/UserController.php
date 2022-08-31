@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Models\Type;
-use App\Models\Category;
 
 class UserController extends Controller
 {
@@ -35,7 +32,7 @@ class UserController extends Controller
         return redirect('/admin-view#users/');
     }
 
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $user = User::findOrFail($id);
 

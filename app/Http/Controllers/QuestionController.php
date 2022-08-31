@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Answer;
-use App\Models\Type;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 
 class QuestionController extends Controller
 {
