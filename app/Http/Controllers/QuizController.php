@@ -62,6 +62,7 @@ class QuizController extends Controller
         }
         else{
             $user = User::findOrFail($user);
+            DB::table('users')->where('id', auth()->user()->id)->increment('games_played');
             return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore'), 'seed' => $request->session()->pull('seed')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
         }
     }     

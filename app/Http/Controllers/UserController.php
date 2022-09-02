@@ -9,8 +9,10 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function show($id){
-        $user = User::findOrFail($id);
-        //$count = $questions->where('is_active', '=', 1)->count();
+        $user = User::withCount(['questions'])->where('id', '=', $id)->first();
+
+        $test = DB::table('users')->orderByDesc('xp')->get();// in prog
+
         return view('profile', ['user' => $user]);
     }
 

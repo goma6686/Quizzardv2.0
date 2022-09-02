@@ -34,7 +34,7 @@
 							<div class="card" style="width: 18rem;">
 								<div class="card-header">Questions Created:</div>								
 								<div class="card-body">
-								  <p class="card-text">0</p>
+								  <p class="card-text">{{$user->questions_count}}</p>
 								</div>
 							</div>
 						</div>
@@ -42,7 +42,7 @@
 							<div class="card" style="width: 18rem;">
 								<div class="card-header">Games Played:</div>								
 								<div class="card-body">
-								  <p class="card-text">0</p>
+								  <p class="card-text">{{$user->games_played}}</p>
 								</div>
 							</div>
 						</div>
