@@ -50,7 +50,7 @@
 							<div class="card" style="width: 18rem;">
 								<div class="card-header">Global Rank:</div>								
 								<div class="card-body">
-								  <p class="card-text">0</p>
+								  <p class="card-text">{{$index}}</p>
 								</div>
 							</div>
 						</div>

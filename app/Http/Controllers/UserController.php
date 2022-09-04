@@ -13,7 +13,17 @@ class UserController extends Controller
 
         $test = DB::table('users')->orderByDesc('xp')->get();// in prog
 
-        return view('profile', ['user' => $user]);
+        $index = $this->findLeaderboardIndex($id, $test);
+
+        return view('profile', ['user' => $user, 'index' => $index]);
+    }
+
+    public function findLeaderboardIndex($id, $arr){
+        foreach(json_decode($arr, true) as $key => $object) {
+            if($object['id'] == $id){
+                return $key;
+            }
+        }
     }
 
     public function leaderboard(){
