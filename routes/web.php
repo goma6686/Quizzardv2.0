@@ -40,10 +40,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/create-question', [QuestionController::class, 'store']);
     Route::group(['middleware' => ['web']], function () {
         Route::get('/game', [QuizController::class, 'quiz'])->name('question');
+
         Route::get('/getseed', [QuizController::class, 'getseed']);
         Route::post('/seed', [QuizController::class, 'seedquiz']);
         Route::get('/seed', [QuizController::class, 'seedquiz']);
-        Route::get('/categorygame', [QuizController::class, 'category']);
+
+        Route::get('/getcategory', [QuizController::class, 'getcategory']);
+        Route::get('/categorygame', [QuizController::class, 'categoryquiz']);
+        Route::post('/categorygame', [QuizController::class, 'categoryquiz']);
+
         Route::post('/ans', [QuizController::class, 'store']);
     });
 });

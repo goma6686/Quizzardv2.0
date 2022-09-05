@@ -18,8 +18,14 @@ class QuizController extends Controller
     public function getseed(){
         return view('game.seed');
     }
+
+    public function getcategory(){
+        $categories = DB::table('categories')->orderByDesc('id')->get();
+        return view('game.category', ['categories' => $categories]);
+    }
+
     public function seedquiz(Request $request){ //paimami klausimai is db, eiliuojami pagal vartotojo seed ir pateikiami po viena
-        if(null !== session('seed')){
+        if(null !== $request->input('seed')){
             
         }
         else{
@@ -31,8 +37,10 @@ class QuizController extends Controller
         return view('game.question', ['questions' => $questions]);
     }
 
-    public function categoryquiz(){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
-        $questions = Question::with('answers')->inRandomOrder(date('Ymd'))->paginate(1);
+    public function categoryquiz(Request $request){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
+        return $request->input('category');
+        $questions = Question::with('answers')->where('category_id', '=', $request->input('category'))->inRandomOrder()->paginate(1);
+        return $questions;
         return view('game.question', ['questions' => $questions]);
     }
 
