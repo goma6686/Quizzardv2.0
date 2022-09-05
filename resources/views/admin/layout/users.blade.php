@@ -1,5 +1,5 @@
 <div class="table-responsive">
-<table class="table table-light table-hover">
+<table class="table table-light table-hover" id="table">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -72,3 +72,9 @@
     </tbody>
 </table>
 </div>
+<script>
+    $(document).ready(function () {
+    $('#table').DataTable();
+    responsive: true;
+});
+</script>

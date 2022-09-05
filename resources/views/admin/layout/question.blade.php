@@ -1,5 +1,6 @@
+
 <div class="table-responsive">
-    <table class="table border-dark">
+    <table class="table border-dark" id="qtable">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -60,3 +61,9 @@
         </tbody>
     </table>
 </div>
+<script>
+    $(document).ready(function () {
+    $('#qtable').DataTable();
+    responsive: true;
+});
+</script>
