@@ -5,6 +5,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Question</th>
+                <th scope="col">Answers</th>
                 <th scope="col">Type</th>
                 <th scope="col">Category</th>
                 <th scope="col">Creator</th>
@@ -20,6 +21,21 @@
                     <th>{{($loop->index)+1}}</th>
                     <td>
                         {{$question->question_text}}
+                    </td>
+                    <td>
+                        <div class="d-grid gap-3">
+                            @foreach($question->answers as $answ)
+                                @if($answ->is_correct)
+                                    <div class="p-2 border border-success">
+                                        {{ ($loop->index)+1 }} ) {{$answ->answer_text}}
+                                    </div>
+                                @else
+                                    <div class="p-2 border border-danger">
+                                        {{ ($loop->index)+1 }} ) {{$answ->answer_text}}
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
                     </td>
                     <td>
                         {{$question->type}}
