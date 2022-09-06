@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class QuestionController extends Controller
 {
@@ -23,7 +24,6 @@ class QuestionController extends Controller
             'type' => 'required',
             'category' => 'required',
         ]);
-        //gauni visus reikalingus inputs
         $input =  $request->only('answer_text', 'is_correct', 'question_text', 'type', 'category');
 
         //save question
@@ -32,6 +32,9 @@ class QuestionController extends Controller
         $question -> type_id = $input['type'];
         $question -> category_id = $input['category'];
         $question -> user_id = $request->user()->id;
+        if (\Auth::user()->is_admin){
+            $question->is_approved = 1;
+        }
         $question -> save();
         
         for ($i = 0; $i < count(array_filter($input['answer_text'])); $i++){ //ciklas suksis, kiek atsakymu yra

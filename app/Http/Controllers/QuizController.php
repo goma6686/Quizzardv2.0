@@ -38,9 +38,7 @@ class QuizController extends Controller
     }
 
     public function categoryquiz(Request $request){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
-        return $request->input('category');
         $questions = Question::with('answers')->where('category_id', '=', $request->input('category'))->inRandomOrder()->paginate(1);
-        return $questions;
         return view('game.question', ['questions' => $questions]);
     }
 
