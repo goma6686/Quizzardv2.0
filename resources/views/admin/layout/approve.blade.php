@@ -46,7 +46,7 @@
                         <td style="text-align: center;">
                             <form action="/approve/{{$a->id}}" method="POST">
                                 @csrf
-                                <button class="btn btn-sm btn-dark">Approve</button>
+                                <button id="liveToastBtn" class="btn btn-sm btn-dark">Approve</button>
                             </form>
                         </td>
                         <td style="text-align: center;">
@@ -65,6 +65,8 @@
     $(document).ready(function () {
         $('#atable').DataTable();
         responsive: true;
-        "searching": false;
+        {
+        "searching": false
+        } 
     });
 </script>

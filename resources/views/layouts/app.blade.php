@@ -30,7 +30,9 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                @include('layouts.toast')
             </main>
+            @include('scripts.toastApproved-script')
         </div>
         <!-- for datatables -->
         <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.12.1.js"></script>

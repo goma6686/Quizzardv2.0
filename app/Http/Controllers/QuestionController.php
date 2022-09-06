@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
+use App\Events\QuestionApproved;
 use Auth;
 
 class QuestionController extends Controller
@@ -79,9 +80,14 @@ class QuestionController extends Controller
     }
 
     public function approve_question($id){
+
         DB::table('questions')
             ->where('id', $id)
             ->update(['is_approved' => 1]);
+
+        //event for toast 
+        event(new QuestionApproved(Question::find($id)));
+
         return redirect()->back(); 
     }
 
