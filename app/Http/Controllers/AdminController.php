@@ -17,13 +17,24 @@ class AdminController extends Controller
         $categories = DB::table('categories')->orderBy('id', 'asc')->get();//'Unknown' is not shown as it should always be in db (in blade, skips first)
         $types = DB::table('types')->orderByDesc('id')->get();
         $users = User::withCount(['questions'])->get();
+
         $questions = Question::with('answers')
             ->join('users', 'questions.user_id', 'users.id')
             ->join('types', 'questions.type_id', 'types.id')
             ->join('categories', 'questions.category_id', 'categories.id')
             ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
+            ->where('is_approved', '=', '1')
             ->get();
-        return view('admin.admin', compact('categories', 'users', 'questions', 'types'));
+
+        $approve = Question::with('answers')
+        ->join('users', 'questions.user_id', 'users.id')
+        ->join('types', 'questions.type_id', 'types.id')
+        ->join('categories', 'questions.category_id', 'categories.id')
+        ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
+        ->where('is_approved', '=', '0')
+        ->get();
+        
+        return view('admin.admin', compact('categories', 'users', 'questions', 'types', 'approve'));
     }
 
     public function update_answer(Request $request, $id){

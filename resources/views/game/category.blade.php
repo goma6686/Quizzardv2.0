@@ -15,7 +15,7 @@
                                         <option value="{{ $category->id }}"  > {{$category->name}} </option>
                                     @endforeach
                             </select>
-                            <input type="submit" class="btn btn-outline-dark mt-2" value="Choose">
+                            <input type="submit" class="btn btn-outline-dark mt-2" value="Play">
                         </form>
                     </div>
                 </div>

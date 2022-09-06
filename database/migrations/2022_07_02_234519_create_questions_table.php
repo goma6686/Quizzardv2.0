@@ -17,10 +17,12 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->text('question_text');
-            $table->boolean('is_active')->default(1);
+            $table->boolean('is_active')->default(0);
+            $table->boolean('is_approved')->default(0);
             $table->foreignId('type_id')->unsigned()->constrained('types');
             $table->foreignId('category_id')->unsigned()->constrained('categories');
             $table->foreignId('user_id')->unsigned()->constrained('users');
+            $table->timestamp('created_at');
         });
     }
 

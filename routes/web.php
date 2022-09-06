@@ -66,6 +66,8 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::post('/update/question/{id}', [QuestionController::class, 'update_question'])->name('question.update');
     Route::delete('/question/delete/{id}', [QuestionController::class, 'destroy_question']);
+
+    Route::post('/approve/{id}', [QuestionController::class, 'approve_question'])->name('question.approve');
  });
 
  Auth::routes();

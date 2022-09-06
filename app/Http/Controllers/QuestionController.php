@@ -75,4 +75,11 @@ class QuestionController extends Controller
         return redirect()->back();
     }
 
+    public function approve_question($id){
+        DB::table('questions')
+            ->where('id', $id)
+            ->update(['is_approved' => 1]);
+        return redirect()->back(); 
+    }
+
 }

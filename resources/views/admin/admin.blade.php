@@ -1,26 +1,51 @@
 <x-app-layout>
-    <div class="p-4 d-flex">
-        <ul class="nav d-flex align-items-start flex-column nav-pills me-3" id="myTab" role="tablist" aria-orientation="horizontal">
-            <li class="nav-item " role="presentation">
-                <button class="nav-link active" href="#questions" id="v-pills-questions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-questions" type="button" role="tab" aria-controls="v-pills-questions" aria-selected="true">questions</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" href="#users" id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="false">users</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" href="#categories" id="v-pills-categories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-categories" type="button" role="tab" aria-controls="v-pills-categories" aria-selected="false">categories</button>
-            </li>
-        </ul>
-
-        <div class="tab-content d-flex justify-content-center w-100 p-4 bg-white border border-secondary" id="v-pills-tabContent">
-            <div class="tab-pane fade show active "  href="#questions" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab" tabindex="0">
-                @include('admin.layout.question')
+    <!-- TABS -->
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin-tab-pane" type="button" role="tab" aria-controls="admin-tab-pane" aria-selected="true">Admin</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Approve Questions</button>
+        </li>
+    </ul>
+    <!-- TABS CONTENT -->
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="admin-tab-pane" role="tabpanel" aria-labelledby="admin-tab" tabindex="0">
+            <!-- VERTICAL PILLS -->
+            <div class="p-4 d-flex">
+                <ul class="nav d-flex align-items-start flex-column nav-pills me-3" id="myTab" role="tablist" aria-orientation="horizontal">
+                    <li class="nav-item " role="presentation">
+                        <button class="nav-link active" href="#questions" id="v-pills-questions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-questions" type="button" role="tab" aria-controls="v-pills-questions" aria-selected="true">questions</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" href="#users" id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="false">users</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" href="#categories" id="v-pills-categories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-categories" type="button" role="tab" aria-controls="v-pills-categories" aria-selected="false">categories</button>
+                    </li>
+                </ul>
+                <!-- VERTICAL PILLS CONTENT-->
+                <div class="tab-content d-flex justify-content-center w-100 p-4 bg-white border border-secondary" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active "  href="#questions" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab" tabindex="0">
+                        @include('admin.layout.question')
+                    </div>
+                    <div class="tab-pane fade" href="#users" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab" tabindex="0">
+                        @include('admin.layout.users')
+                    </div>
+                    <div class="tab-pane fade" href="#categories" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab" tabindex="0">
+                        @include('admin.layout.categories')
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane fade" href="#users" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab" tabindex="0">
-                @include('admin.layout.users')
-            </div>
-            <div class="tab-pane fade" href="#categories" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab" tabindex="0">
-                @include('admin.layout.categories')
+        </div>
+        <!-- TABS CONTENT 2-->
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="p-5">
+                <div class=" justify-content-center w-100 p-2 bg-white border border-secondary">
+                    <div class="p-5 border border-secondary">
+                        @include('admin.layout.approve')
+                    </div>
+                </div>
             </div>
         </div>
     </div>
