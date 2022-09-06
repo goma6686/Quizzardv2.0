@@ -52,7 +52,7 @@ class QuestionController extends Controller
             $answer -> save();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Question Sent!');
     }
 
     public function update_question(Request $request, $id){
