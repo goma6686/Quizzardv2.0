@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     public function index(Request $request){
-        $categories = DB::table('categories')->orderByDesc('id')->get();
+        $categories = DB::table('categories')->orderBy('id', 'asc')->get();//'Unknown' is not shown as it should always be in db (in blade, skips first)
         $types = DB::table('types')->orderByDesc('id')->get();
         $users = User::withCount(['questions'])->get();
         $questions = Question::with('answers')
@@ -24,21 +24,6 @@ class AdminController extends Controller
             ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
             ->get();
         return view('admin.admin', compact('categories', 'users', 'questions', 'types'));
-    }
-
-    public function update_question(Request $request, $id){
-        $question = Question::find($id);
-        $input = $request->all();
-
-        if(isset($input['is_active'])){
-            $question->is_active = '1';
-        } else {
-            $question->is_active = '0';
-        }
-        $question -> category_id = $input['category_id'];
-        $question->fill($input)->save();
- 
-        return redirect()->back();
     }
 
     public function update_answer(Request $request, $id){
@@ -103,18 +88,10 @@ class AdminController extends Controller
     public function destroy_category($id)
     {
         $category = Category::findOrFail($id);
-        if($id != 1){
+        if($id != 1){ //nes id1 -> Unknown should always be available
             Question::where('category_id', $id)->update((['category_id'=>'1']));
             $category->delete();
         }
         return redirect('/admin-view#categories/');
-    }
-
-    public function destroy_question($id)
-    {
-        $question = Question::findOrFail($id);
-        Answer::where('question_id', $question->id)->delete();
-        $question->delete();
-        return redirect()->back();
     }
 }
