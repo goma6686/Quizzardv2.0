@@ -16,9 +16,11 @@
                             </div>
                         </div>
                         <div class="text-center">
-                          @if(null !== $seed)
+                          @if(isset($seed))
                             You played by seed {{$seed}}, got {{$gamescore}} questions correct, and
                             earned {{$gamexp}}XP
+                          @elseif(isset($categoryname))
+                              You played category {{$categoryname}}, got {{$gamescore}} questions correct, and earned {{$gamexp}}XP
                           @else
                             You got {{$gamescore}} questions correct, and
                             earned {{$gamexp}}XP

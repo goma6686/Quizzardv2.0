@@ -12,7 +12,7 @@
                             @csrf
                             <select class="form-control" name="category" type="category" required>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}"  > {{$category->name}} </option>
+                                        <option value="{{ $category->id }}|{{ $category->name }}"  > {{$category->name}} </option>
                                     @endforeach
                             </select>
                             <input type="submit" class="btn btn-outline-dark mt-2" value="Play">
