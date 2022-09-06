@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\User;
+<<<<<<< HEAD
 use App\Models\Type;
 use App\Models\Question;
 use App\Models\Answer;
+=======
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function index(Request $request){
+<<<<<<< HEAD
         $categories = DB::table('categories')->orderBy('id', 'asc')->get();//'Unknown' is not shown as it should always be in db (in blade, skips first)
         $types = DB::table('types')->orderByDesc('id')->get();
         $users = User::withCount(['questions'])->get();
@@ -71,6 +75,14 @@ class AdminController extends Controller
         }
  
         return redirect()->back();
+=======
+
+        //grazina kiek user turi sukures questions. Nzn ar reik
+        //$data = User::withCount(['questions'])->get(); 
+        $categories = Category::all();
+        $users = User::all();
+        return view('admin.admin', ['categories' => $categories, 'users' => $users]);
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
     }
  
 
@@ -84,7 +96,7 @@ class AdminController extends Controller
 
         try {
             $category -> save();
-            return redirect('/admin-view#categories/');
+            return redirect()->back();
         
         } catch(\Illuminate\Database\QueryException $e){
             $errorCode = $e->errorInfo[1];
@@ -103,6 +115,6 @@ class AdminController extends Controller
             Question::where('category_id', $id)->update((['category_id'=>'1']));
             $category->delete();
         }
-        return redirect('/admin-view#categories/');
+        return redirect()->back();
     }
 }

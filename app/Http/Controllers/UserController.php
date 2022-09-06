@@ -18,6 +18,7 @@ class UserController extends Controller
         return view('profile', ['user' => $user, 'index' => $index]);
     }
 
+<<<<<<< HEAD
     public function findLeaderboardIndex($id, $arr){
         foreach(json_decode($arr, true) as $key => $object) {
             if($object['id'] == $id){
@@ -31,6 +32,8 @@ class UserController extends Controller
         return view('leaderboard', ['users' => $users]);
     }
 
+=======
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
     public function edit($id)
     {
         $user = User::findOrFail($id);

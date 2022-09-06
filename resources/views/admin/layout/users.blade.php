@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 <div class="table-responsive">
 <table class="table table-light table-hover" id="table">
+=======
+<table class="table table-light table-hover">
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -25,7 +29,7 @@
                     {{$user->email}}
                 </td>
                 <td>
-                    {{$user->questions_count}}
+                    {{--{{$user->questions_count}}--}}
                 </td>
                 <td>
                     @if ($user->is_active == 1) 
@@ -71,6 +75,7 @@
         @endforeach
     </tbody>
 </table>
+<<<<<<< HEAD
 </div>
 <script>
     $(document).ready(function () {
@@ -78,3 +83,8 @@
     responsive: true;
 });
 </script>
+=======
+@if($counter == 0)
+<h3 style="text-align: center;">No users found :(</h3>
+@endif
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d

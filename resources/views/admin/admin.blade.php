@@ -1,4 +1,5 @@
 <x-app-layout>
+<<<<<<< HEAD
     <!-- TABS -->
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -48,6 +49,28 @@
                         @include('admin.layout.approve')
                     </div>
                 </div>
+=======
+    <div class="p-4 d-flex align-items-start">
+        <ul class="nav flex-column nav-pills me-3" id="myTab" role="tablist" aria-orientation="vertical">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" href="#questions" id="v-pills-questions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-questions" type="button" role="tab" aria-controls="v-pills-questions" aria-selected="true">questions</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" href="#users" id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="false">users</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" href="#categories" id="v-pills-categories-tab" data-bs-toggle="pill" data-bs-target="#v-pills-categories" type="button" role="tab" aria-controls="v-pills-categories" aria-selected="false">categories</button>
+            </li>
+        </ul>
+
+        <div class="tab-content p-6 bg-white" id="v-pills-tabContent">
+            <div class="tab-pane fade show active"  href="#questions" id="v-pills-questions" role="tabpanel" aria-labelledby="v-pills-questions-tab" tabindex="0">.questions..</div>
+            <div class="tab-pane fade" href="#users" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab" tabindex="0">
+                @include('admin.layout.users')
+            </div>
+            <div class="tab-pane fade" href="#categories" id="v-pills-categories" role="tabpanel" aria-labelledby="v-pills-categories-tab" tabindex="0">
+                @include('admin.layout.categories')
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
             </div>
         </div>
     </div>

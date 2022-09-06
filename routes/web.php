@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+<<<<<<< HEAD
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+=======
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
 use App\Http\Middleware\Authenticate;
 
 
@@ -23,11 +26,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 //user-related
+=======
+Route::get('/test', function () {
+    return view('test');
+});
+
+
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
 Route::get('/user/{id}', [UserController::class, 'show'])->name('profile');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');
 
+<<<<<<< HEAD
 //tik prisijungusiems
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', function () {
@@ -52,8 +64,12 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/ans', [QuizController::class, 'store']);
     });
 });
+=======
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
 
-//tik adminam
 Route::group(['middleware' => ['admin']], function () {
     Route::get('admin-view', [AdminController::class, 'index'])->name('admin.view');
 

@@ -10,11 +10,14 @@
                         Create Question
                     </x-nav-link>
                 </div>
+<<<<<<< HEAD
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
                         Leaderboard
                     </x-nav-link>
                 </div>
+=======
+>>>>>>> 3435db419e1b57988185f5d2060c78375189396d
                 @if(auth()->check() && Auth::user()->is_admin)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('admin.view')" :active="request()->routeIs('admin.view')">
