@@ -21,7 +21,7 @@ class UserController extends Controller
     public function findLeaderboardIndex($id, $arr){
         foreach(json_decode($arr, true) as $key => $object) {
             if($object['id'] == $id){
-                return $key;
+                return $key+1;
             }
         }
     }

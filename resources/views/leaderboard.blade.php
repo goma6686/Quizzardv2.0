@@ -21,7 +21,7 @@
                             <tr >
                                 <td>{{ ($loop->index)+1 }}</td>
                                 <td><img class="rounded" src="{{ $user->profile_pic }}" alt="pic" width="45" height="40"></td>
-                                <td> {{$user->name}}</td>
+                                <td> <a href="/user/{{$user->id}}" class="btn" role="button"> {{$user->name}}</a></td>
                                 <td>{{$user->xp}}</td>
                             </tr>
                                 @endforeach
