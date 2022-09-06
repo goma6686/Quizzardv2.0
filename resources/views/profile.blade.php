@@ -7,7 +7,7 @@
         	<div class="row">
         	  <div class = "col-4"></div>
 	          <div class = "col-2">
-				<img src="{{ $user->profile_pic }}" style="height: 125px !important">
+				<img class="rounded" src="{{ $user->profile_pic }}" style="height: 125px !important">
 		      </div>
 		      <div class = "col-2" style="line-height: 40px">
 				<p class="m-b-10">{{ $user->email }}</p>
