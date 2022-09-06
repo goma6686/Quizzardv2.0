@@ -64,7 +64,8 @@
 </div>
 <script>
     $(document).ready(function () {
-    $('#atable').DataTable();
-    responsive: true;
-});
+        $('#atable').DataTable();
+        responsive: true;
+        "searching": false;
+    });
 </script>

@@ -33,8 +33,8 @@ class AdminController extends Controller
         ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
         ->where('is_approved', '=', '0')
         ->get();
-        
-        return view('admin.admin', compact('categories', 'users', 'questions', 'types', 'approve'));
+        $count = $approve->count();
+        return view('admin.admin', compact('categories', 'users', 'questions', 'types', 'approve', 'count'));
     }
 
     public function update_answer(Request $request, $id){
