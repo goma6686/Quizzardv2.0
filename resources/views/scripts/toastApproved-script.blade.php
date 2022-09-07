@@ -3,6 +3,16 @@
     var pusher = new Pusher('225ca3a5888bbcbc0ed1', {
     cluster: 'eu'
     });
+
+    var channel = pusher.subscribe('questions');
+
+    channel.private(`user.${this.id}`).listen('.QuestionApproved', (e) => {
+        const toastApproved = document.getElementById('liveToast')
+            const toast = new bootstrap.Toast(toastApproved)
+            toast.show();
+    });
+
+    /*
     var channel = pusher.subscribe('questions');
     //var channel = pusher.subscribe('private-user.'.$this->id);
 
@@ -24,4 +34,6 @@
             toast.show()
     };
     pusher.user.bind('App\\Events\\QuestionApproved', callback);*/
+
+
 </script>

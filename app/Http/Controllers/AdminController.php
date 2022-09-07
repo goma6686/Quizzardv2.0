@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     public function index(Request $request){
-        $categories = DB::table('categories')->orderBy('id', 'asc')->get();//'Unknown' is not shown as it should always be in db (in blade, skips first)
+        $categories = Category::withCount('question')->orderBy('id', 'asc')->get();
         $types = DB::table('types')->orderByDesc('id')->get();
         $users = User::withCount(['questions'])->get();
 
@@ -25,7 +25,6 @@ class AdminController extends Controller
             ->select('questions.*', 'users.name as creator', 'types.name as type', 'categories.name as category')
             ->where('is_approved', '=', '1')
             ->get();
-
         $approve = Question::with('answers')
         ->join('users', 'questions.user_id', 'users.id')
         ->join('types', 'questions.type_id', 'types.id')

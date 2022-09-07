@@ -31,8 +31,16 @@ class UserSeeder extends Seeder
             'password' => Hash::make('demo2'),
         ];
 
+        $data3 = [
+            'name' => 'teapot2',
+            'email' => 'judesysmail3@gmail.com',
+            'is_admin' => false,
+            'password' => Hash::make('demo3'),
+        ];
+
         User::create($data); //one admin
         User::create($data2);
+        User::create($data3);
         User::factory(30)->create(); //5 random
 
         DB::update('UPDATE users SET profile_pic = CONCAT("https://picsum.photos/seed/", name, "/125.jpg")');

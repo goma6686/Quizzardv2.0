@@ -85,8 +85,11 @@ class QuestionController extends Controller
             ->where('id', $id)
             ->update(['is_approved' => 1]);
 
+        $q = Question::find($id);
+        $user_id = $q->user_id;
+
         //event for toast 
-        event(new QuestionApproved(Question::find($id)));
+        event(new QuestionApproved($user_id));
 
         return redirect()->back(); 
     }

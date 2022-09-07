@@ -3,6 +3,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
+            <th scope="col">Question count</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -13,6 +14,9 @@
                 <th>{{($loop->index)}}</th>
                 <td>
                     {{$category->name}}
+                </td>
+                <td>
+                    {{$category->question_count}}
                 </td>
                 <td>
                     <form action="/category/delete/{{$category->id}}" method="POST">

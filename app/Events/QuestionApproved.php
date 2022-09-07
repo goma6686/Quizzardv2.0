@@ -6,24 +6,27 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class QuestionApproved implements ShouldBroadcast
+class QuestionApproved implements ShouldBroadcastNow
 {
+
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $question;
+    private $id;
+    //public $question;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($question)
+    public function __construct($id)
     {
-        $this->question = $question;
+        $this->id = $id;
+        //$this->question = $question;
     }
 
     /**
@@ -31,20 +34,28 @@ class QuestionApproved implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
+    /*public function broadcastOn()
     {
         return new Channel('questions');
-    }
-    /*
+    }*/
+    
     public function broadcastOn()
     {
-        return [new PrivateChannel('private-user.'.$this->question->user_id)];
-    }*/
+        return [new PrivateChannel('user.'.$this->id)];
+    }
 
+    
     public function broadcastWith() {
         return [
-          'question_text' => $this->question->question_text,
-          'user_id' => $this->question->user_id,
+          'user_id' => $this->id,
         ];
       }
+      /*
+    public function broadcastWith($event)
+    {
+        return match ($event) {
+            'question_text' => ['question_text' => $this->question->question_text],
+            default => ['model' => $this],
+        };
+    }*/
 }
