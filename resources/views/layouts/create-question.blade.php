@@ -29,6 +29,7 @@
                         <label>Choose Answer Type:</label>
                         <br>
                         <select class="form-control" name="type" id="options">
+                            <option selected disabled>Select Type</option>
                             @foreach ($types as $type)
                                 <option value="{{ $type->id }}" @selected(old('type') == $type)>
                                     {{$type->name}}
@@ -48,20 +49,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><input type="text" name="answer_text[]" class="form-control" placeholder="Type here..." required=""></td>
-                                        <td>
-                                            <input type="checkbox" name="is_correct[]" value="0"/>
-                                        </td>
-                                    </tr>
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     
                     <div class="text-center">
-                        <button id="submit" type="submit" class="btn btn-secondary text-dark">Submit</button>
+                        <button id="submit" type="submit" class="btn btn-secondary text-dark" disabled>Submit</button>
                     </div>
                     </form>
                 </div>
@@ -69,4 +63,5 @@
         </div>
     </div>
 @include('scripts.answer-script')
+@include('scripts.disableBtn-script')
 </x-app-layout>

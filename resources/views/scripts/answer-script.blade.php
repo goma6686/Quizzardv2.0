@@ -1,26 +1,42 @@
 <script>
     $(document).ready(function(){
-        var counter = 1; //nes vienas answer turi buti
-
         var select = document.getElementById('options');
         var value = select.options[select.selectedIndex].value;
 
+        var counter = (document.getElementById("table").rows.length)-1; //nes pirmas row yra pavadinimai
+
         $("#options").change(function(){
+            deleteRows();
             var value = select.options[select.selectedIndex].value;
 
             //jei true-false, tada palieka 1 eilute
-            if (value === '1') {
-                for (let i = counter; i < 5; i++) {
-                    var newRow = $("<tr>");
+            if (value === '2') {
+                addRows(2);
+                $('input[type="checkbox"]').each(function() {
+                    $(this).attr("type", "radio");
+                });
+            } else {
+                addRows(5);
+                $('input[type="radio"]').each(function() {
+                    $(this).attr("type", "radio");
+                });
+            }
+        });
+
+        function deleteRows(){
+            while (counter > 0){
+                document.getElementById("table").deleteRow(counter);
+                counter -= 1
+            }
+        }
+
+        function addRows(x) {
+            for (let i = counter; i < x; i++) {
+                var newRow = $("<tr>");
                 var cols = '';
     
                 // Table columns
-                if (counter === 1){
-                    cols += `<td><input class="form-control" type="text" name="answer_text[]" placeholder="Type here..." required></td>`;
-                }
-                else {
-                    cols += `<td><input class="form-control" type="text" name="answer_text[]" placeholder="Type here..."></td>`;
-                }
+                cols += `<td><input class="form-control" type="text" name="answer_text[]" placeholder="Type here..." required></td>`;
                 cols += `<td><input type="checkbox" name="is_correct[]"  value="${counter}" /></td>`
         
                 // Insert the columns inside a row
@@ -31,14 +47,8 @@
         
                 // Increase counter after each row insertion
                 counter++;
-                }
-                
-            } else {
-                while (counter > 1){
-                    document.getElementById("table").deleteRow(counter);
-                    counter -= 1
-                }
             }
-        });
+        }
+
     });
 </script>
