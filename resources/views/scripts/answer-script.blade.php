@@ -36,7 +36,11 @@
                 var cols = '';
     
                 // Table columns
-                cols += `<td><input class="form-control" type="text" name="answer_text[]" value="" placeholder="Type here..." required></td>`;
+                if(counter < 2){
+                    cols += `<td><input class="form-control" type="text" name="answer_text[]" value="" placeholder="Type here..." required></td>`;
+                } else {
+                    cols += `<td><input class="form-control" type="text" name="answer_text[]" value="" placeholder="Type here..." ></td>`;
+                }
                 cols += `<td><input type="checkbox" name="is_correct[]"  value="${counter}" /></td>`
         
                 // Insert the columns inside a row
