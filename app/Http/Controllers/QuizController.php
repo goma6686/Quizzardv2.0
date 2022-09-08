@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
@@ -20,7 +21,7 @@ class QuizController extends Controller
     }
 
     public function getcategory(){
-        $categories = DB::table('categories')->orderByDesc('id')->get();
+        $categories = Category::withCount('question')->having('question_count', '>', 0)->orderBy('id', 'desc')->get();
         return view('game.category', ['categories' => $categories]);
     }
 
@@ -78,18 +79,18 @@ class QuizController extends Controller
         else{
             if(null !== session('seed')){
                 $user = User::findOrFail($user);
-            DB::table('users')->where('id', auth()->user()->id)->increment('games_played');
-            return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore'), 'seed' => $request->session()->pull('seed')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
+                DB::table('users')->where('id', auth()->user()->id)->increment('games_played');
+                return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore'), 'seed' => $request->session()->pull('seed')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
             }
             else if(null !== session('category')){
                 $user = User::findOrFail($user);
-            DB::table('users')->where('id', auth()->user()->id)->increment('games_played');
-            return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore'), 'category' => $request->session()->pull('category'), 'categoryname' => $request->session()->pull('categoryname')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
+                DB::table('users')->where('id', auth()->user()->id)->increment('games_played');
+                return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore'), 'category' => $request->session()->pull('category'), 'categoryname' => $request->session()->pull('categoryname')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
             }
             else{
                 $user = User::findOrFail($user);
-            DB::table('users')->where('id', auth()->user()->id)->increment('games_played');
-            return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
+                DB::table('users')->where('id', auth()->user()->id)->increment('games_played');
+                return view('game.end', ['user' => $user, 'gamexp' => $request->session()->pull('gamexp'), 'gamescore' => $request->session()->pull('gamescore')]); //jei daugiau klausimu nera, einama i zaidimo pabaigos view
             }
             
         }
