@@ -15,8 +15,8 @@
                 $('input[type="checkbox"]').each(function() {
                     $(this).attr("type", "radio");
                 });
-                $('table input[type="text"]').eq(0).attr('value', 'TRUE');
-                $('table input[type="text"]').eq(1).attr('value', 'FALSE');
+                $('table input[type="text"]').eq(0).attr('value', 'TRUE').prop('readonly',true);
+                $('table input[type="text"]').eq(1).attr('value', 'FALSE').prop('readonly',true);
                 $('table input[type="radio"]').get(0).checked = true;
             } else {
                 addRows(5);
