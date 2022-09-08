@@ -15,11 +15,11 @@
                 $('input[type="checkbox"]').each(function() {
                     $(this).attr("type", "radio");
                 });
+                $('table input[type="text"]').eq(0).attr('value', 'TRUE');
+                $('table input[type="text"]').eq(1).attr('value', 'FALSE');
+                $('table input[type="radio"]').get(0).checked = true;
             } else {
                 addRows(5);
-                $('input[type="radio"]').each(function() {
-                    $(this).attr("type", "radio");
-                });
             }
         });
 
@@ -36,7 +36,7 @@
                 var cols = '';
     
                 // Table columns
-                cols += `<td><input class="form-control" type="text" name="answer_text[]" placeholder="Type here..." required></td>`;
+                cols += `<td><input class="form-control" type="text" name="answer_text[]" value="" placeholder="Type here..." required></td>`;
                 cols += `<td><input type="checkbox" name="is_correct[]"  value="${counter}" /></td>`
         
                 // Insert the columns inside a row
