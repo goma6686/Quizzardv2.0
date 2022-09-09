@@ -12,7 +12,7 @@ class QuizController extends Controller
 {
 
     public function quiz(){ //paimami klausimai is db, eiliuojami su datos seed ir pateikiami po viena
-    	$questions = Question::with('answers')->inRandomOrder(date('Ymd'))->paginate(1);
+    	$questions = Question::with('answers')->inRandomOrder(date('Ymd'))->limit(10)->paginate(1);
         return view('game.question', ['questions' => $questions]);
     }
 
@@ -32,7 +32,7 @@ class QuizController extends Controller
             $request->session()->put('seed', $seed);
         }
         
-        $questions = Question::with('answers')->inRandomOrder($request->session()->get('seed'))->paginate(1);
+        $questions = Question::with('answers')->inRandomOrder($request->session()->get('seed'))->limit(10)->paginate(1);
         return view('game.question', ['questions' => $questions]);
     }
 
@@ -48,7 +48,7 @@ class QuizController extends Controller
 
         }
 
-        $questions = Question::with('answers')->where('category_id', session('category'))->inRandomOrder(date('Ymd'))->paginate(1);
+        $questions = Question::with('answers')->where('category_id', session('category'))->inRandomOrder(date('Ymd'))->limit(10)->paginate(1);
         return view('game.question', ['questions' => $questions]);
     }
 
