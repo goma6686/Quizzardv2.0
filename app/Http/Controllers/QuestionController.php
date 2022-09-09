@@ -89,7 +89,8 @@ class QuestionController extends Controller
         $user_id = $q->user_id;
 
         //event for toast 
-        event(new QuestionApproved($user_id));
+        //event(new QuestionApproved($user_id));
+        QuestionApproved::dispatch($user_id);
 
         return redirect()->back(); 
     }

@@ -33,11 +33,12 @@
                     <td>
                         <input type="text" name="name" class="form-control" required="">
                     </td>
+                    <td></td>
                     <td>
                         @csrf
                     <button type="submit" class="btn btn-sm btn-secondary text-dark">Add</button>
+                    </td>
                 </form>
-            </td>
         </tr>
     </tbody>
 </table>

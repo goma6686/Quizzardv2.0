@@ -16,7 +16,6 @@ class QuestionApproved implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     private $id;
-    //public $question;
 
     /**
      * Create a new event instance.
@@ -26,7 +25,6 @@ class QuestionApproved implements ShouldBroadcastNow
     public function __construct($id)
     {
         $this->id = $id;
-        //$this->question = $question;
     }
 
     /**
@@ -34,14 +32,11 @@ class QuestionApproved implements ShouldBroadcastNow
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    /*public function broadcastOn()
-    {
-        return new Channel('questions');
-    }*/
     
     public function broadcastOn()
     {
-        return [new PrivateChannel('user.'.$this->id)];
+        return new PrivateChannel('App.Models.User.'.$this->id);
+        //return new Channel('questions');
     }
 
     
@@ -49,13 +44,5 @@ class QuestionApproved implements ShouldBroadcastNow
         return [
           'user_id' => $this->id,
         ];
-      }
-      /*
-    public function broadcastWith($event)
-    {
-        return match ($event) {
-            'question_text' => ['question_text' => $this->question->question_text],
-            default => ['model' => $this],
-        };
-    }*/
+    }
 }

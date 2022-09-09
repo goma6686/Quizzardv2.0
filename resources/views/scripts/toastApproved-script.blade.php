@@ -1,39 +1,30 @@
 <script>
     Pusher.logToConsole = true;
-    var pusher = new Pusher('225ca3a5888bbcbc0ed1', {
-    cluster: 'eu'
+    
+    const pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+        cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+        auth: {
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            }
+        }
     });
 
-    var channel = pusher.subscribe('questions');
-
-    channel.private(`user.${this.id}`).listen('.QuestionApproved', (e) => {
+    //var channel = pusher.subscribe('questions');
+    var channel = pusher.subscribe(`App.Models.User.${this.id}`);
+    
+    /*Echo.private(`private-user.${this.id}`).listen('App\\Events\\QuestionApproved', (e) => {
         const toastApproved = document.getElementById('liveToast')
-            const toast = new bootstrap.Toast(toastApproved)
-            toast.show();
-    });
-
-    /*
-    var channel = pusher.subscribe('questions');
-    //var channel = pusher.subscribe('private-user.'.$this->id);
+        const toast = new bootstrap.Toast(toastApproved)
+        toast.show();
+    });*/
+    
 
     channel.bind('App\\Events\\QuestionApproved', function(data) {
-    var obj = data;
-    obj.toJSON = function(){
-        return {
-            question_text: data.question_text
-        }
-    }
-    const toastApproved = document.getElementById('liveToast')
-            const toast = new bootstrap.Toast(toastApproved)
-            toast.show()
-    });
-    /*
-    var callback = (data) => {
         const toastApproved = document.getElementById('liveToast')
             const toast = new bootstrap.Toast(toastApproved)
             toast.show()
-    };
-    pusher.user.bind('App\\Events\\QuestionApproved', callback);*/
+    });
 
 
 </script>
