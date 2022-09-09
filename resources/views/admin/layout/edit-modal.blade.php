@@ -51,7 +51,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="type">Type</label>
-                    <select class="form-control" name="type_id" type="type_id" required>
+                    <select class="form-control" name="type_id" type="type_id" disabled required>
                         @foreach($types as $type)
                         <option value="{{ $type->id }}" @if ($question->type_id == $type->id) selected @endif> {{$type->name}} </option>
                         @endforeach
@@ -60,7 +60,11 @@
                 @foreach($question->answers as $a)
                     <div class="mb-3">
                         <label for="answer_text">Answer Text</label>
-                        <input type="text" id="answer_text" name="answer_text[]" value="{{ old('answer_text', $a->answer_text) }}" class="form-control" required>
+                        @if ($question->type_id == 2)
+                            <input type="text" id="answer_text" name="answer_text[]" value="{{ old('answer_text', $a->answer_text) }}" class="form-control"disabled required>
+                        @else
+                            <input type="text" id="answer_text" name="answer_text[]" value="{{ old('answer_text', $a->answer_text) }}" class="form-control" required>
+                        @endif
                         
                         <label >is correct?</label>
                         <input type="hidden" name="is_correct[]" value="{{ $a->id }}" />
